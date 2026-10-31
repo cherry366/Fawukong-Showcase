@@ -1,0 +1,1398 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>法悟空 · 法律服务平台 App 产品方案｜产品经理作品集</title>
+<style>
+:root{
+  --ink:#0E1826; --ink2:#17253C; --ink3:#24344F;
+  --gold:#C9A227; --gold-l:#E3C767; --gold-d:#9C7C12;
+  --paper:#F7F5F0; --paper2:#EFEBE3; --line:#E4DFD4;
+  --muted:#6E7684; --white:#fff;
+  --orange:#F5A623; --teal:#CFEAEA; --green:#2E9E7B; --blue:#3B7DD8; --red:#D9534F;
+  --radius:14px; --shadow:0 10px 30px rgba(14,24,38,.08);
+}
+*{box-sizing:border-box; margin:0; padding:0}
+html{scroll-behavior:smooth}
+section[id]{scroll-margin-top:78px}
+body{
+  font-family:"PingFang SC","Microsoft YaHei","Noto Sans SC",system-ui,sans-serif;
+  background:var(--paper); color:var(--ink); line-height:1.7; -webkit-font-smoothing:antialiased;
+}
+a{color:inherit; text-decoration:none}
+.wrap{max-width:1180px; margin:0 auto; padding:0 26px}
+
+/* ============ 顶部导航 ============ */
+.topbar{position:sticky; top:0; z-index:60; backdrop-filter:blur(14px); background:rgba(247,245,240,.86); border-bottom:1px solid var(--line)}
+.topbar .wrap{display:flex; align-items:center; justify-content:space-between; height:62px}
+.brand{display:flex; align-items:center; gap:10px; font-weight:700; letter-spacing:.02em}
+.logo{width:30px; height:30px; border-radius:9px; background:linear-gradient(140deg,var(--ink2),#31476B); color:var(--gold-l); display:grid; place-items:center; font-size:14px; font-weight:800}
+.tnav{display:flex; gap:22px; font-size:14px; color:var(--muted)}
+.tnav a:hover{color:var(--ink)}
+.tnav a.hide-sm{display:inline}
+@media(max-width:860px){.tnav{display:none}}
+
+/* ============ Hero ============ */
+.hero{background:radial-gradient(1200px 520px at 78% -10%,#26395A 0%,#0E1826 58%,#0A121E 100%); color:#fff; position:relative; overflow:hidden}
+.hero::after{content:""; position:absolute; inset:0; background-image:linear-gradient(rgba(255,255,255,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.045) 1px,transparent 1px); background-size:46px 46px; mask-image:radial-gradient(700px 380px at 70% 20%,#000,transparent)}
+.hero .wrap{position:relative; z-index:2; display:grid; grid-template-columns:1.15fr .85fr; gap:40px; padding:74px 26px 80px; align-items:center}
+@media(max-width:900px){.hero .wrap{grid-template-columns:1fr; padding:52px 22px 64px}}
+.eyebrow{display:inline-flex; align-items:center; gap:8px; font-size:12.5px; letter-spacing:.18em; color:var(--gold-l); border:1px solid rgba(227,199,103,.35); padding:6px 12px; border-radius:999px; background:rgba(201,162,39,.08)}
+h1{font-size:64px; line-height:1.05; letter-spacing:.04em; margin:20px 0 6px; font-weight:800}
+@media(max-width:900px){h1{font-size:44px}}
+.hero .sub{font-size:22px; color:#EDE7D8; margin-top:10px; font-weight:500; letter-spacing:.02em}
+@media(max-width:900px){.hero .sub{font-size:17px}}
+.hero p.desc{color:#A9B4C6; margin-top:18px; max-width:540px; font-size:14.5px}
+.hero-tags{display:flex; flex-wrap:wrap; gap:10px; margin-top:24px}
+.hero-tags span{font-size:13px; padding:6px 13px; border-radius:999px; background:rgba(255,255,255,.07); border:1px solid rgba(255,255,255,.13); color:#D9E0EA}
+.hero-cta{display:flex; gap:12px; margin-top:30px; flex-wrap:wrap}
+.btn{display:inline-flex; align-items:center; gap:8px; padding:12px 22px; border-radius:10px; font-size:14.5px; font-weight:600; border:1px solid transparent; cursor:pointer; transition:.2s}
+.btn-gold{background:linear-gradient(135deg,var(--gold-l),var(--gold)); color:#2A2105; box-shadow:0 8px 22px rgba(201,162,39,.28)}
+.btn-gold:hover{transform:translateY(-2px); box-shadow:0 12px 26px rgba(201,162,39,.38)}
+.btn-ghost{border-color:rgba(255,255,255,.28); color:#E8ECF3}
+.btn-ghost:hover{background:rgba(255,255,255,.08)}
+.hero-stats{display:grid; grid-template-columns:repeat(4,1fr); gap:1px; margin-top:38px; background:rgba(255,255,255,.12); border:1px solid rgba(255,255,255,.12); border-radius:12px; overflow:hidden; max-width:560px}
+.hero-stats div{background:#101A2B; padding:14px 12px}
+.hero-stats b{display:block; font-size:22px; color:#fff; font-weight:700}
+.hero-stats i{font-style:normal; font-size:12px; color:#98A5BA}
+.hero-visual{display:flex; justify-content:center}
+.mini-phone{width:260px; border-radius:34px; padding:9px; background:linear-gradient(160deg,#33455F,#111B2B); box-shadow:0 30px 70px rgba(0,0,0,.5); border:1px solid rgba(255,255,255,.12); transform:rotate(-3deg)}
+.mini-phone img{width:100%; display:block; border-radius:26px}
+
+/* ============ 通用区块 ============ */
+.sec{padding:78px 0}
+.sec.alt{background:#fff; border-top:1px solid var(--line); border-bottom:1px solid var(--line)}
+.sec-head{display:flex; align-items:flex-end; gap:16px; flex-wrap:wrap; margin-bottom:14px}
+.snum{font-size:13px; font-weight:800; letter-spacing:.16em; color:var(--gold-d); padding-bottom:6px}
+h2{font-size:31px; letter-spacing:.01em; font-weight:700}
+.lead{color:var(--muted); max-width:780px; font-size:14.5px; margin-bottom:34px}
+@media(max-width:640px){h2{font-size:24px}.sec{padding:56px 0}}
+.grid3{display:grid; grid-template-columns:repeat(3,1fr); gap:18px}
+.grid4{display:grid; grid-template-columns:repeat(4,1fr); gap:18px}
+.grid2{display:grid; grid-template-columns:1fr 1fr; gap:18px}
+@media(max-width:900px){.grid3,.grid4{grid-template-columns:1fr 1fr}}
+@media(max-width:640px){.grid3,.grid4,.grid2{grid-template-columns:1fr}}
+.card{background:#fff; border:1px solid var(--line); border-radius:var(--radius); padding:24px; box-shadow:var(--shadow)}
+.card h3{font-size:16.5px; margin-bottom:10px; display:flex; align-items:center; gap:9px}
+.card p{font-size:13.8px; color:var(--muted)}
+.ico{width:34px; height:34px; border-radius:10px; display:grid; place-items:center; font-size:16px; background:rgba(201,162,39,.12); color:var(--gold-d)}
+.pain{display:flex; gap:14px; padding:18px 0; border-bottom:1px dashed var(--line)}
+.pain:last-child{border:0}
+.pain .no{font-size:12px; font-weight:800; color:var(--gold-d); letter-spacing:.1em; min-width:26px; padding-top:3px}
+.pain h4{font-size:15px; margin-bottom:4px}
+.pain p{font-size:13.5px; color:var(--muted)}
+
+/* ============ 用户画像 ============ */
+.persona{background:#fff; border:1px solid var(--line); border-radius:var(--radius); padding:20px; box-shadow:var(--shadow); position:relative; overflow:hidden}
+.persona::before{content:""; position:absolute; inset:0 auto 0 0; width:3px; background:linear-gradient(var(--gold-l),var(--gold-d))}
+.p-top{display:flex; align-items:center; gap:12px; margin-bottom:12px}
+.p-face{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;font-weight:700;color:#fff;font-size:15px;background:linear-gradient(140deg,#3C5375,#1D2A40)}
+.p-name{font-size:15px; font-weight:700}
+.p-meta{font-size:12px; color:var(--muted)}
+.p-quote{font-size:13.5px; color:var(--ink3); background:var(--paper); padding:10px 12px; border-radius:9px; margin-bottom:12px; border-left:2px solid var(--gold-l)}
+.p-list{font-size:13px; color:var(--muted); display:flex; flex-direction:column; gap:6px}
+.p-list b{color:var(--ink3); font-weight:600}
+.scene-strip{display:grid; grid-template-columns:repeat(6,1fr); gap:10px; margin-top:26px}
+@media(max-width:900px){.scene-strip{grid-template-columns:repeat(3,1fr)}}
+.scene{background:var(--paper); border:1px solid var(--line); border-radius:11px; padding:14px 12px; text-align:center}
+.scene em{font-style:normal; display:block; font-size:11px; color:var(--gold-d); font-weight:800; letter-spacing:.08em; margin-bottom:5px}
+.scene span{font-size:13px; font-weight:600}
+.scene i{display:block; font-style:normal; font-size:11.5px; color:var(--muted); margin-top:3px}
+
+/* ============ 定位 ============ */
+.position-box{background:linear-gradient(135deg,#12203A,#0E1826); color:#fff; border-radius:18px; padding:38px; display:grid; grid-template-columns:1.25fr .75fr; gap:34px; align-items:center}
+@media(max-width:900px){.position-box{grid-template-columns:1fr; padding:26px}}
+.position-box .big{font-size:26px; line-height:1.5; font-weight:700; letter-spacing:.01em}
+@media(max-width:640px){.position-box .big{font-size:20px}}
+.position-box .big span{color:var(--gold-l)}
+.position-box .sm{color:#9FAEC4; font-size:13.5px; margin-top:14px}
+.north{background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.14); border-radius:13px; padding:22px}
+.north em{font-style:normal; font-size:11.5px; letter-spacing:.16em; color:var(--gold-l)}
+.north b{display:block; font-size:20px; margin:8px 0 6px}
+.north p{font-size:12.5px; color:#A5B2C6; line-height:1.6}
+table.spec{width:100%; border-collapse:collapse; background:#fff; border:1px solid var(--line); border-radius:var(--radius); overflow:hidden; font-size:13.5px; box-shadow:var(--shadow)}
+table.spec thead th{background:#F2EFE8; text-align:left; padding:12px 14px; font-size:12.5px; letter-spacing:.05em; color:var(--ink3); border-bottom:1px solid var(--line)}
+table.spec td{padding:12px 14px; border-bottom:1px solid #F0EDE5; vertical-align:top; color:var(--ink3)}
+table.spec tr:last-child td{border-bottom:0}
+.pri{display:inline-block; font-size:11.5px; padding:2px 8px; border-radius:999px; font-weight:700}
+.p0{background:#FBE9E7; color:#B33A32} .p1{background:#FFF3DC; color:#956E13} .p2{background:#E8F1EC; color:#2C7A5B}
+
+/* ============ 信息架构 ============ */
+.ia{display:grid; grid-template-columns:repeat(5,1fr); gap:12px}
+@media(max-width:900px){.ia{grid-template-columns:repeat(2,1fr)}}
+.ia-col{background:#fff; border:1px solid var(--line); border-radius:12px; overflow:hidden; box-shadow:var(--shadow)}
+.ia-h{background:#12203A; color:#fff; font-size:13.5px; font-weight:700; padding:11px 13px; letter-spacing:.04em}
+.ia-h i{font-style:normal; color:var(--gold-l); font-size:11px; margin-right:6px}
+.ia-u{padding:10px 13px; font-size:12.8px; color:var(--muted); border-top:1px solid #F1EEE7}
+.ia-u b{color:var(--ink3); font-weight:600}
+
+/* ============ Demo ============ */
+.demo-wrap{display:grid; grid-template-columns:400px 1fr; gap:34px; align-items:start}
+@media(max-width:960px){.demo-wrap{grid-template-columns:1fr; justify-items:center}}
+.demo-left{position:sticky; top:82px}
+@media(max-width:960px){.demo-left{position:static}}
+.device{width:360px; aspect-ratio:360/730; background:#111; border-radius:42px; padding:9px; box-shadow:0 26px 60px rgba(14,24,38,.24), 0 0 0 1px rgba(0,0,0,.25); position:relative}
+.device::after{content:""; position:absolute; left:50%; transform:translateX(-50%); bottom:8px; width:118px; height:4px; border-radius:4px; background:#3a3a3a}
+.screenwrap{position:relative; width:100%; height:100%; background:#fff; border-radius:34px; overflow:hidden; display:flex; flex-direction:column}
+.statusbar{height:26px; display:flex; align-items:center; justify-content:space-between; padding:0 18px; font-size:10.5px; font-weight:600; color:#111; flex:0 0 auto}
+.st-right{display:flex; align-items:center; gap:4px}
+.sig{display:inline-flex; align-items:flex-end; gap:1.5px; height:9px}
+.sig i{width:2.5px; background:#111; border-radius:1px; display:block}
+.sig i:nth-child(1){height:3px}.sig i:nth-child(2){height:5px}.sig i:nth-child(3){height:7px}.sig i:nth-child(4){height:9px}
+.batt{width:17px;height:8.5px;border:1px solid #111;border-radius:2px;position:relative}
+.batt::before{content:"";position:absolute;inset:1px;right:3px;background:#111;border-radius:1px}
+.view{position:absolute; inset:26px 0 0 0; display:none; flex-direction:column; background:#fff}
+.view.active{display:flex}
+.screenwrap.has-tabs .view{inset:26px 0 56px 0}
+.scroll{flex:1; overflow-y:auto; overflow-x:hidden; scrollbar-width:thin}
+.scroll::-webkit-scrollbar{width:0}
+.navbar{flex:0 0 auto; height:42px; display:grid; grid-template-columns:44px 1fr 44px; align-items:center; border-bottom:1px solid #F0F0F0; padding:0 6px; background:#fff}
+.navbar .ntitle{font-size:14.5px; font-weight:600; text-align:center}
+.navbar .nback{font-size:19px; color:#333; text-align:center; cursor:pointer; line-height:1}
+.navbar .nright{font-size:12px; color:#F5A623; text-align:center; cursor:pointer}
+.tabbar{position:absolute; left:0; right:0; bottom:0; height:56px; border-top:1px solid #F0F0F0; display:none; grid-template-columns:repeat(5,1fr); align-items:center; background:#fff; z-index:10}
+.screenwrap.has-tabs .tabbar{display:grid}
+.tab{display:flex; flex-direction:column; align-items:center; gap:2px; font-size:9.5px; color:#9AA0A6; cursor:pointer; padding-top:3px}
+.tab.on{color:#111}
+.tab svg{width:21px;height:21px;stroke:currentColor;fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.tab .dot{position:absolute; width:6px;height:6px;border-radius:50%;background:#E5484D; transform:translate(11px,-9px)}
+.tabplus{display:grid; place-items:center}
+.plusbtn{width:47px;height:47px;border-radius:50%;background:#111;color:#fff;display:grid;place-items:center;font-size:26px;font-weight:300;margin-top:-16px;box-shadow:0 6px 16px rgba(0,0,0,.22); cursor:pointer; line-height:1}
+.cats{display:grid; grid-template-columns:repeat(4,1fr); gap:4px; padding:12px 8px 6px}
+.cat{display:flex; flex-direction:column; align-items:center; gap:6px; cursor:pointer; padding:6px 0; border-radius:9px}
+.cat:active{background:#FAFAFA}
+.cat .ci{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;font-size:15px;background:#FFF3E2;color:#F5A623}
+.cat span{font-size:10.5px; color:#333}
+.banner{margin:6px 12px 4px; height:126px; border-radius:11px; overflow:hidden; background:
+radial-gradient(220px 120px at 80% 20%,rgba(245,166,35,.18),transparent),
+linear-gradient(135deg,#1B2A4A,#2E4468); position:relative; color:#fff; padding:16px 14px; cursor:pointer}
+.banner b{display:block; font-size:14.5px; letter-spacing:.02em; line-height:1.4}
+.banner span{display:block; font-size:10px; color:#B9C6DA; margin-top:5px}
+.banner .bk{position:absolute; right:12px; bottom:12px; font-size:10px; background:var(--orange); color:#231a00; font-weight:700; padding:5px 10px; border-radius:999px}
+.banner .doc{position:absolute; right:14px; top:12px; font-size:30px; opacity:.85}
+.sec-h{display:flex; align-items:center; justify-content:space-between; padding:14px 13px 8px}
+.sec-h b{font-size:13.5px}
+.sec-h span{font-size:10.5px; color:#999; cursor:pointer}
+.law{display:flex; gap:9px; margin:0 10px 10px; padding:10px; border:1px solid #E8F3F3; border-radius:10px; background:#fff; box-shadow:0 1px 6px rgba(20,60,70,.05); cursor:pointer}
+.law:active{background:#FAFEFE}
+.law .ava{width:46px;height:46px;border-radius:7px;flex:0 0 auto;display:grid;place-items:center;font-size:16px;font-weight:700;color:#fff}
+.law .li{flex:1; min-width:0}
+.law .ln{font-size:12.5px; font-weight:700; display:flex; align-items:baseline; gap:3px}
+.law .ln em{font-style:normal; font-size:10px; color:#666; font-weight:400}
+.law .lf{font-size:10px; color:#666; margin-top:2px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
+.law .lt{display:flex; gap:3px; flex-wrap:wrap; margin-top:4px}
+.law .lt i{font-style:normal; font-size:9px; color:#5A6672; border:1px solid #DCE3E6; border-radius:3px; padding:0 4px; line-height:1.5}
+.law .ls{font-size:9.5px; color:#7A828C; margin-top:5px}
+.law .lp{flex:0 0 auto; text-align:right; font-size:11.5px; color:#E2605A; font-weight:700}
+.law .lp em{display:block; font-style:normal; font-size:8.5px; color:#B9BFC7; font-weight:400}
+/* 列表筛选 */
+.fbar{display:flex; gap:6px; padding:9px 8px; border-bottom:1px solid #F2F2F2; position:sticky; top:0; background:#fff; z-index:5}
+.fchip{flex:1; font-size:10.5px; padding:5px 6px; border:1px solid #E3E3E3; border-radius:6px; background:#fff; color:#444; white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
+.fchip.on{border-color:#F5A623; color:#C67A00; background:#FFF8EC}
+/* 律师详情 */
+.dt-top{padding:16px 14px 12px; background:linear-gradient(180deg,#FFF9EF,#fff)}
+.dt-row{display:flex; gap:12px}
+.dt-ava{width:64px;height:64px;border-radius:10px;display:grid;place-items:center;font-size:22px;font-weight:700;color:#fff}
+.dt-name{font-size:16px; font-weight:700; display:flex; align-items:center; gap:6px}
+.dt-name i{font-style:normal; font-size:9.5px; background:#FFF3DC; color:#A9781A; padding:1px 6px; border-radius:999px; font-weight:600}
+.dt-firm{font-size:11px; color:#666; margin-top:3px}
+.dt-tags{display:flex; gap:4px; flex-wrap:wrap; margin-top:7px}
+.dt-tags i{font-style:normal; font-size:9.5px; border:1px solid #E1E6E9; color:#5A6672; border-radius:3px; padding:1px 5px}
+.dt-stats{display:grid;grid-template-columns:repeat(3,1fr);margin-top:14px;background:#fff;border:1px solid #F0EDE6;border-radius:8px;padding:9px 0}
+.dt-stats div{text-align:center;border-right:1px solid #F2EFE9}
+.dt-stats div:last-child{border:0}
+.dt-stats b{display:block;font-size:14px;color:#C9821A}
+.dt-stats span{font-size:9px;color:#8A9199}
+.svc{background:#fff; margin:9px 10px; border:1px solid #F0EDE6; border-radius:10px; overflow:hidden}
+.svc-h{font-size:12px;font-weight:700;padding:11px 12px 4px}
+.svc-i{display:flex;align-items:center;justify-content:space-between;padding:10px 12px;border-top:1px solid #F6F4EF}
+.svc-i:first-of-type{border-top:0}
+.svc-l b{display:block;font-size:12px;color:#222}
+.svc-l span{font-size:9.5px;color:#8A9199}
+.svc-r{display:flex;align-items:center;gap:8px}
+.svc-r em{font-style:normal;font-size:12.5px;color:#E2605A;font-weight:700}
+.selbtn{font-size:10px;padding:4px 11px;border-radius:999px;border:1px solid #F5A623;color:#C67A00;background:#fff}
+.blk{background:#fff;margin:9px 10px;border:1px solid #F0EDE6;border-radius:10px;padding:12px}
+.blk h5{font-size:12px;margin-bottom:6px}
+.blk p{font-size:11px;color:#5A6672;line-height:1.75}
+.rev{border-top:1px dashed #F0EDE6;padding-top:9px;margin-top:9px}
+.rev-n{font-size:10.5px;color:#333;font-weight:600}
+.rev-s{color:#F5A623;font-size:10px;letter-spacing:1px}
+.rev-t{font-size:10.5px;color:#666;margin-top:2px;line-height:1.6}
+.dbar{flex:0 0 auto;border-top:1px solid #F0F0F0;padding:8px 12px;display:flex;align-items:center;justify-content:space-between;background:#fff}
+.dbar .pr{font-size:11px;color:#8A9199}
+.dbar .pr b{font-size:16px;color:#E2605A}
+.dbar button{background:linear-gradient(135deg,#F7B33F,#F5A623);border:0;color:#2b2000;font-weight:700;font-size:12px;padding:10px 22px;border-radius:999px}
+/* 订单 */
+.otabs{display:flex;gap:14px;padding:11px 14px;border-bottom:1px solid #F2F2F2;font-size:12px;color:#777;position:sticky;top:0;background:#fff;z-index:5}
+.otab{position:relative;padding-bottom:4px;cursor:pointer}
+.otab.on{color:#111;font-weight:700;border-bottom:2px solid #F5A623}
+.otab b{display:inline-grid;place-items:center;min-width:14px;height:14px;border-radius:50%;background:#F05B4F;color:#fff;font-size:8.5px;margin-left:3px;padding:0 3px}
+.ocard{margin:10px;border:1px solid #F0EDE6;border-radius:10px;overflow:hidden;background:#fff}
+.orow{display:flex;gap:9px;padding:11px}
+.oava{width:42px;height:42px;border-radius:7px;display:grid;place-items:center;color:#fff;font-weight:700;font-size:15px;flex:0 0 auto}
+.oinfo{flex:1;min-width:0}
+.oname{font-size:12px;font-weight:700}
+.oname em{font-style:normal;font-size:10px;color:#777;font-weight:400}
+.ofirm{font-size:9.5px;color:#777;margin-top:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.otags{font-size:9.5px;color:#8A9199;margin-top:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.oright{text-align:right;flex:0 0 auto}
+.ostatus{font-size:10.5px;font-weight:700}
+.s-unpaid{color:#E2605A}.s-toreview{color:#3B7DD8}.s-done{color:#8A9199}.s-cancel{color:#B4B9C0}
+.oprice{font-size:12.5px;color:#333;margin-top:3px;font-weight:600}
+.ofoot{border-top:1px solid #F6F4EF;padding:8px 11px;display:flex;align-items:center;justify-content:space-between}
+.otime{font-size:9.5px;color:#9AA0A6}
+.oacts{display:flex;gap:6px}
+.obtn{font-size:10px;padding:4px 12px;border-radius:999px;border:1px solid #D9DEE3;background:#fff;color:#555}
+.obtn.pri{border-color:#F5A623;color:#C67A00;font-weight:600}
+/* 消息 */
+.msearch{padding:8px 12px;border-bottom:1px solid #F6F6F6}
+.msearch div{background:#F5F5F5;border-radius:999px;padding:6px 12px;font-size:10.5px;color:#A0A6AD}
+.mpc{display:flex;align-items:center;gap:9px;padding:8px 12px;background:#FAFAF7;border-bottom:1px solid #F2F2F2;font-size:10px;color:#6E7684}
+.mpc span{font-size:12px}
+.mitem{display:flex;gap:10px;padding:12px;border-bottom:1px solid #F4F4F4;align-items:center;cursor:pointer}
+.mava{width:40px;height:40px;border-radius:6px;display:grid;place-items:center;color:#fff;font-weight:700;font-size:15px;flex:0 0 auto}
+.mbody{flex:1;min-width:0}
+.mname{font-size:12.5px;font-weight:600;display:flex;justify-content:space-between;align-items:baseline}
+.mname span{font-size:9px;color:#A0A6AD;font-weight:400}
+.mtext{font-size:10.5px;color:#8A9199;margin-top:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+/* 聊天 */
+.chatbg{background:#F4F5F7}
+.bubwrap{padding:12px}
+.bub{max-width:76%;padding:9px 11px;border-radius:10px;font-size:11.5px;line-height:1.65;margin-bottom:9px;position:relative;word-break:break-word}
+.bub.them{background:#fff;color:#222;border-top-left-radius:3px}
+.bub.me{background:#F5A623;color:#2b2000;margin-left:auto;border-top-right-radius:3px}
+.bub .t{display:block;font-size:8px;opacity:.55;margin-top:3px;text-align:right}
+.chat-input{flex:0 0 auto;border-top:1px solid #E9E9EC;background:#fff;padding:8px 10px}
+.qchips{display:flex;gap:5px;overflow-x:auto;padding-bottom:7px}
+.qchip{white-space:nowrap;font-size:9.5px;border:1px solid #E3E3E3;border-radius:999px;padding:3px 9px;color:#555;background:#fff}
+.cinput{display:flex;gap:7px}
+.cinput input{flex:1;border:1px solid #E6E6E6;border-radius:999px;padding:7px 12px;font-size:11px;outline:none;background:#FAFAFA}
+.cinput button{background:#F5A623;border:0;border-radius:999px;width:34px;height:30px;font-size:11px;font-weight:700;color:#3a2b00}
+/* 我的 */
+.pf-top{display:flex;align-items:center;gap:11px;padding:18px 14px 12px}
+.pf-ava{width:56px;height:56px;border-radius:50%;background:linear-gradient(140deg,#8B6E5A,#5C4636);display:grid;place-items:center;color:#fff;font-size:18px;font-weight:700;border:2px solid #fff;box-shadow:0 2px 10px rgba(0,0,0,.12)}
+.pf-name{font-size:16px;font-weight:700}
+.pf-name span{color:#E2605A;font-size:13px;margin-left:5px}
+.pf-city{font-size:10.5px;color:#7A828C;margin-top:2px}
+.pf-three{display:flex;justify-content:space-around;margin:6px 12px 12px;padding:12px 0;border:1px solid #F0EDE6;border-radius:10px;box-shadow:0 2px 10px rgba(0,0,0,.03)}
+.pf-three div{text-align:center;font-size:10.5px;color:#555;cursor:pointer}
+.pf-three .em{display:block;font-size:18px;color:#F5A623;margin-bottom:3px}
+.pf-three b{display:block;font-size:11px;color:#222}
+.pf-menu{margin-top:4px}
+.pf-m{display:flex;align-items:center;gap:11px;padding:13px 16px;border-bottom:1px solid #F4F4F4;font-size:12.5px;color:#333;cursor:pointer}
+.pf-m .em{color:#F5A623;font-size:15px;width:20px;text-align:center}
+.pf-m .ar{margin-left:auto;color:#C4C8CE;font-size:13px}
+/* 弹层 */
+.ov{position:absolute;inset:26px 0 0 0;background:rgba(0,0,0,.42);display:none;z-index:20}
+.ov.show{display:block}
+.sheet{position:absolute;left:0;right:0;bottom:0;background:#fff;border-radius:16px 16px 0 0;padding:16px 16px 20px;animation:up .22s ease}
+@keyframes up{from{transform:translateY(100%)}to{transform:translateY(0)}}
+.sheet h4{font-size:14px;margin-bottom:12px;text-align:center}
+.sheet .row{display:flex;align-items:center;justify-content:space-between;padding:12px 2px;border-bottom:1px solid #F4F4F4;font-size:12.5px}
+.sheet .row b{color:#E2605A}
+.sheet .bigbtn{width:100%;margin-top:14px;background:linear-gradient(135deg,#F7B33F,#F5A623);border:0;border-radius:999px;padding:12px;font-size:13px;font-weight:700;color:#2b2000}
+.optlist{padding:2px 0}
+.opt{padding:11px 4px;border-bottom:1px solid #F5F5F5;font-size:12.5px;display:flex;justify-content:space-between}
+.opt.on{color:#C67A00;font-weight:700}
+.stars{display:flex;justify-content:center;gap:10px;font-size:28px;color:#E2E5E9;margin:8px 0 14px;cursor:pointer}
+.stars .lit{color:#F5A623}
+.toast{position:absolute;left:50%;top:70px;transform:translate(-50%,-12px);background:rgba(20,26,36,.9);color:#fff;font-size:11px;padding:9px 14px;border-radius:8px;opacity:0;transition:.25s;z-index:30;max-width:280px;text-align:center;pointer-events:none}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+/* 侧面板 */
+.demo-side .panel{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:22px;box-shadow:var(--shadow);margin-bottom:16px}
+.demo-side .ptag{font-size:11px;letter-spacing:.14em;color:var(--gold-d);font-weight:800}
+.demo-side h3{font-size:19px;margin:7px 0 8px}
+.demo-side p{font-size:13.5px;color:var(--muted)}
+.demo-side .hint{font-size:12.5px;color:var(--ink3);background:var(--paper);border-left:2px solid var(--gold-l);padding:9px 12px;border-radius:8px;margin-top:12px}
+.demo-side .reset{margin-top:14px;font-size:12.5px;border:1px solid var(--line);background:#fff;padding:8px 14px;border-radius:8px;cursor:pointer}
+.script{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:18px 22px;box-shadow:var(--shadow)}
+.script h4{font-size:14px;margin-bottom:10px}
+.script ol{padding-left:18px;font-size:12.8px;color:var(--muted);display:flex;flex-direction:column;gap:7px}
+.script ol b{color:var(--ink3)}
+.script .cap{display:grid;grid-template-columns:1fr 1fr;gap:8px 16px;font-size:12.6px;color:var(--muted)}
+.script .cap b{color:var(--ink3)}
+@media(max-width:680px){.script .cap{grid-template-columns:1fr}}
+
+/* ============ 原稿画廊 ============ */
+.gal{display:grid;grid-template-columns:repeat(5,1fr);gap:16px}
+@media(max-width:1000px){.gal{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:680px){.gal{grid-template-columns:repeat(2,1fr)}}
+.gitem{background:#fff;border:1px solid var(--line);border-radius:12px;padding:9px;cursor:pointer;transition:.2s;box-shadow:var(--shadow)}
+.gitem:hover{transform:translateY(-4px);box-shadow:0 16px 34px rgba(14,24,38,.13)}
+.gitem img{width:100%;display:block;border-radius:8px;border:1px solid #F0EDE6}
+.gcap{padding:9px 3px 3px}
+.gcap b{font-size:12.5px;display:block}
+.gcap span{font-size:11px;color:var(--muted)}
+.lightbox{position:fixed;inset:0;background:rgba(8,12,18,.86);display:none;place-items:center;z-index:100;padding:24px}
+.lightbox.show{display:grid}
+.lightbox img{max-height:88vh;max-width:92vw;border-radius:12px;box-shadow:0 30px 80px rgba(0,0,0,.5)}
+.lightbox .close{position:absolute;top:18px;right:22px;color:#fff;font-size:30px;cursor:pointer;line-height:1}
+
+/* ============ 流程 ============ */
+.flowbox{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:22px;box-shadow:var(--shadow);margin-bottom:18px}
+.flowbox h4{font-size:15px;margin-bottom:6px}
+.flowbox p{font-size:12.5px;color:var(--muted);margin-bottom:12px}
+.flowbox svg{width:100%;height:auto;display:block}
+.ftxt{font-size:12px;fill:#26334A;font-weight:600}
+.ftxt-sm{font-size:10px;fill:#6E7684}
+.node{fill:#FBF9F4;stroke:#E2D9C4;stroke-width:1.2}
+.node-k{fill:#12203A;stroke:#12203A}
+.ftxt-w{font-size:12px;fill:#fff;font-weight:600}
+.arrow{stroke:#C9A227;stroke-width:1.6;fill:none}
+.arrow-d{stroke:#C2C7CF;stroke-width:1.4;fill:none;stroke-dasharray:5 4}
+
+/* ============ 指标 ============ */
+.funnel{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:24px;box-shadow:var(--shadow)}
+.frow{display:flex;align-items:center;gap:14px;margin-bottom:12px}
+.fname{width:104px;font-size:12.5px;color:var(--ink3);text-align:right;flex:0 0 auto}
+.ftrack{flex:1;background:#F1EEE7;border-radius:6px;height:26px;overflow:hidden}
+.ffill{height:100%;border-radius:6px;background:linear-gradient(90deg,#1B2A4A,#3B527A);display:flex;align-items:center;justify-content:flex-end;padding-right:8px;color:#fff;font-size:11px;font-weight:600;transition:width .8s}
+.frow:nth-child(2) .ffill{background:linear-gradient(90deg,#22334F,#42618F)}
+.frow:nth-child(3) .ffill{background:linear-gradient(90deg,#2A3F60,#4F7199)}
+.frow:nth-child(4) .ffill{background:linear-gradient(90deg,#3A5074,#5E82A8)}
+.frow:nth-child(5) .ffill{background:linear-gradient(90deg,#7A611F,#B99A3F)}
+.frow:nth-child(6) .ffill{background:linear-gradient(90deg,#9C7C12,#D2AE46)}
+.frow:nth-child(7) .ffill{background:linear-gradient(90deg,#B08A18,#E3C767)}
+.kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:20px}
+@media(max-width:900px){.kpis{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.kpis{grid-template-columns:1fr}}
+.kpi{background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px 18px;box-shadow:var(--shadow)}
+.kpi em{font-style:normal;font-size:11.5px;color:var(--muted)}
+.kpi b{display:block;font-size:25px;color:var(--ink);margin:3px 0;font-weight:700}
+.kpi span{font-size:11px;color:var(--gold-d)}
+
+/* ============ 规划 ============ */
+.road{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+@media(max-width:900px){.road{grid-template-columns:1fr}}
+.rcard{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:22px;box-shadow:var(--shadow);position:relative}
+.rcard .v{font-size:12px;font-weight:800;letter-spacing:.1em;color:var(--gold-d)}
+.rcard h4{font-size:16px;margin:6px 0 10px}
+.rcard ul{padding-left:16px;font-size:12.8px;color:var(--muted);display:flex;flex-direction:column;gap:6px}
+.risk{margin-top:26px}
+.foot{background:#0E1826;color:#8E9AAF;padding:36px 0;font-size:12.5px}
+.foot .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;align-items:center}
+.foot b{color:#fff;font-weight:600}
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="wrap">
+    <div class="brand"><div class="logo">法</div> 法悟空 · 产品方案</div>
+    <nav class="tnav">
+      <a href="#bg">背景</a><a href="#users">用户</a><a href="#position">定位</a>
+      <a href="#ia">架构</a><a href="#demo">Demo</a><a href="#proto">原稿</a>
+      <a href="#flow">流程</a><a href="#metrics">指标</a><a href="#roadmap">规划</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ================= HERO ================= -->
+<section class="hero">
+  <div class="wrap">
+    <div>
+      <span class="eyebrow">法律科技 · 产品设计 · 2026</span>
+      <h1>法悟空</h1>
+      <div class="sub">把找律师，做成像「打车」一样简单</div>
+      <p class="desc">法悟空是一款法律服务平台 App：用户按案件类型快速匹配律师，明码标价在线咨询，从下单、沟通到评价全流程可追溯。本页包含 5 屏原型原稿、可点击的产品 Demo、完整 PRD 与核心流程。</p>
+      <div class="hero-tags">
+        <span>律师撮合</span><span>在线咨询</span><span>订单交易</span><span>评价体系</span><span>律师入驻</span>
+      </div>
+      <div class="hero-cta">
+        <a class="btn btn-gold" href="#demo">▶ 体验交互 Demo</a>
+        <a class="btn btn-ghost" href="#proto">查看原型原稿</a>
+      </div>
+      <div class="hero-stats">
+        <div><b>5</b><i>核心界面</i></div>
+        <div><b>9</b><i>功能模块</i></div>
+        <div><b>3</b><i>核心流程</i></div>
+        <div><b>12</b><i>需求条目</i></div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="mini-phone"><img src="assets/screen-home.png" alt="法悟空首页原型"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 01 背景 ================= -->
+<section class="sec" id="bg">
+  <div class="wrap">
+    <div class="sec-head"><div class="snum">01 / 项目背景</div><h2>法律服务「贵、慢、不透明」，普通人不敢问</h2></div>
+    <p class="lead">遇到租房押金、劳动工伤、婚姻财产、合同违约这类问题，用户的第一反应往往不是找律师，而是「先上网搜搜」「问问朋友」。不是没有需求，而是决策成本太高：不知道找谁、不知道多少钱、不知道过程靠不靠谱。</p>
+    <div class="grid2" style="align-items:start">
+      <div class="card">
+        <h3><span class="ico">!</span>三类核心痛点</h3>
+        <div class="pain">
+          <div class="no">01</div>
+          <div><h4>信息不对称：不知道该找谁</h4><p>律师数量多、专业方向差异大，普通用户无法判断「我的案子该找哪类律师」，只能依赖熟人推荐。</p></div>
+        </div>
+        <div class="pain">
+          <div class="no">02</div>
+          <div><h4>价格不透明：怕被「宰」</h4><p>咨询费、代理费口径不一，缺少可比价的标准化服务包，用户在沟通前无法建立预算预期。</p></div>
+        </div>
+        <div class="pain">
+          <div class="no">03</div>
+          <div><h4>过程无留痕：服务不可追溯</h4><p>以电话和线下沟通为主，服务进度、承诺事项缺少记录，出现纠纷时用户缺少维权依据。</p></div>
+        </div>
+      </div>
+      <div class="card">
+        <h3><span class="ico">◎</span>机会判断</h3>
+        <p style="margin-bottom:14px">需求侧：租房、劳动、婚姻、合同类法律需求高频且标准化程度相对较高，适合用产品化方式承接。</p>
+        <p style="margin-bottom:14px">供给侧：大量青年律师与中小律所缺少稳定获客渠道，愿意用「明码标价 + 平台派单」换取案源。</p>
+        <p style="margin-bottom:14px">习惯侧：年轻用户已习惯在平台上比价、下单、评价，法律服务具备被「电商化」的条件。</p>
+        <div class="hint" style="margin-top:6px">结论：以「案件类型」为索引重构找律师路径，用透明定价降低决策成本，用订单与聊天留痕建立信任。</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 02 用户 ================= -->
+<section class="sec alt" id="users">
+  <div class="wrap">
+    <div class="sec-head"><div class="snum">02 / 用户与场景</div><h2>四类典型用户，一个共同诉求：快、准、不加价</h2></div>
+    <p class="lead">把「法律需求」翻译成用户能理解的场景语言，而不是法条语言。四类人群的付费能力与决策动机差异明显，但都希望在小额、高频、低门槛的咨询里先获得确定性。</p>
+    <div class="grid4">
+      <div class="persona">
+        <div class="p-top"><div class="p-face">林</div><div><div class="p-name">林然 · 28 岁</div><div class="p-meta">一线城市白领 / 租房</div></div></div>
+        <div class="p-quote">「押金被扣了 5000，值不值得请律师？」</div>
+        <div class="p-list"><span><b>诉求：</b>低成本判断是否值得起诉</span><span><b>预算：</b>100 元以内</span><span><b>关键：</b>响应速度、结论明确</span></div>
+      </div>
+      <div class="persona">
+        <div class="p-top"><div class="p-face">陈</div><div><div class="p-name">陈静 · 35 岁</div><div class="p-meta">家庭用户 / 婚姻财产</div></div></div>
+        <div class="p-quote">「不想让身边人知道，需要靠谱又保密。」</div>
+        <div class="p-list"><span><b>诉求：</b>财产分割与抚养权方案</span><span><b>预算：</b>500~2000 元</span><span><b>关键：</b>隐私、专业度、共情</span></div>
+      </div>
+      <div class="persona">
+        <div class="p-top"><div class="p-face">王</div><div><div class="p-name">王强 · 32 岁</div><div class="p-meta">小微企业主 / 合同债务</div></div></div>
+        <div class="p-quote">「合同要得急，今天必须有人帮我看。」</div>
+        <div class="p-list"><span><b>诉求：</b>合同审查、催收方案</span><span><b>预算：</b>按次付费，可复购</span><span><b>关键：</b>效率、可开发票</span></div>
+      </div>
+      <div class="persona">
+        <div class="p-top"><div class="p-face">张</div><div><div class="p-name">张建国 · 45 岁</div><div class="p-meta">下沉市场 / 劳动工伤</div></div></div>
+        <div class="p-quote">「流程不懂，怕被中介忽悠。」</div>
+        <div class="p-list"><span><b>诉求：</b>工伤认定与赔偿标准</span><span><b>预算：</b>价格敏感</span><span><b>关键：</b>价格透明、步骤清晰</span></div>
+      </div>
+    </div>
+    <div class="scene-strip">
+      <div class="scene"><em>STEP 1</em><span>遇到问题</span><i>焦虑、怕花钱</i></div>
+      <div class="scene"><em>STEP 2</em><span>搜索 / 问朋友</span><i>信息混乱</i></div>
+      <div class="scene"><em>STEP 3</em><span>比价看评价</span><i>建立预算</i></div>
+      <div class="scene"><em>STEP 4</em><span>在线咨询</span><i>验证专业度</i></div>
+      <div class="scene"><em>STEP 5</em><span>下单支付</span><i>锁定服务</i></div>
+      <div class="scene"><em>STEP 6</em><span>服务与评价</span><i>复购 / 推荐</i></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 03 定位 ================= -->
+<section class="sec" id="position">
+  <div class="wrap">
+    <div class="sec-head"><div class="snum">03 / 产品定位</div><h2>一个「可按价筛选」的法律服务交易入口</h2></div>
+    <p class="lead">不做法律百科，也不做律所官网；做的是把「找律师」这件非标服务，拆成可比较、可下单、可评价的标准商品。</p>
+    <div class="position-box">
+      <div>
+        <div class="big">让每一个普通人，<br>都能在 <span>3 分钟</span>内找到「对的律师」。</div>
+        <div class="sm">以案件类型为索引，以透明定价为前提，以过程留痕为信任基础。</div>
+        <div class="hero-tags" style="margin-top:18px">
+          <span>明码标价 ¥39.9 起</span><span>按案件类型匹配</span><span>聊天与订单全留痕</span>
+        </div>
+      </div>
+      <div class="north">
+        <em>NORTH STAR METRIC</em>
+        <b>周有效付费咨询订单数</b>
+        <p>只统计「完成支付且律师 48 小时内实际响应」的订单，避免用曝光或注册量虚增规模。</p>
+      </div>
+    </div>
+
+    <div class="grid3" style="margin-top:22px">
+      <div class="card">
+        <h3><span class="ico">1</span>差异化一：价格前置</h3>
+        <p>列表页直接展示「¥xx/次起」，详情页给出图文 / 电话 / 面谈三档报价，用户在沟通前就能建立预算，减少询价流失。</p>
+      </div>
+      <div class="card">
+        <h3><span class="ico">2</span>差异化二：案件类型索引</h3>
+        <p>首页以婚姻家庭、租赁纠纷、劳动工伤、合同事务四大高频场景切入，而不是按律所或职级罗列，降低「我该找谁」的门槛。</p>
+      </div>
+      <div class="card">
+        <h3><span class="ico">3</span>差异化三：过程可追溯</h3>
+        <p>咨询在平台内完成，聊天记录、订单状态、服务承诺全部留痕，既保护用户，也作为平台处理纠纷的依据。</p>
+      </div>
+    </div>
+
+    <div class="grid3" style="margin-top:18px">
+      <div class="card"><h3>用户目标</h3><p>3 分钟内完成「选类型 → 看律师 → 下单」；咨询前明确知道要花多少钱。</p></div>
+      <div class="card"><h3>业务目标</h3><p>把低频的「打官司」需求，转化为高频的「先问一句」小额咨询，形成复购。</p></div>
+      <div class="card"><h3>平台目标</h3><p>建立律师服务质量的可量化评价体系，用订单与好评率驱动供给端优胜劣汰。</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 04 架构 ================= -->
+<section class="sec alt" id="ia">
+  <div class="wrap">
+    <div class="sec-head"><div class="snum">04 / 信息架构与需求</div><h2>5 个一级入口，12 条核心需求</h2></div>
+    <p class="lead">底部导航固定为「首页 / 发现 / 消息 / 我的」，中间「+」承载高频的快速咨询；订单作为独立页从「我的」进入，避免与消息混淆。</p>
+    <div class="ia">
+      <div class="ia-col">
+        <div class="ia-h"><i>01</i>首页</div>
+        <div class="ia-u"><b>城市定位</b></div>
+        <div class="ia-u"><b>四大案件分类</b></div>
+        <div class="ia-u"><b>推荐律师</b></div>
+        <div class="ia-u">活动 Banner</div>
+      </div>
+      <div class="ia-col">
+        <div class="ia-h"><i>02</i>找律师</div>
+        <div class="ia-u"><b>多维筛选</b>（类型/价格/综合）</div>
+        <div class="ia-u"><b>律师列表</b></div>
+        <div class="ia-u">律师详情</div>
+        <div class="ia-u">服务报价与下单</div>
+      </div>
+      <div class="ia-col">
+        <div class="ia-h"><i>03</i>消息</div>
+        <div class="ia-u"><b>会话列表</b></div>
+        <div class="ia-u"><b>单聊</b>（文字/图片）</div>
+        <div class="ia-u">快捷提问</div>
+        <div class="ia-u">未读提醒</div>
+      </div>
+      <div class="ia-col">
+        <div class="ia-h"><i>04</i>订单</div>
+        <div class="ia-u"><b>全部 / 待付款 / 待评价</b></div>
+        <div class="ia-u">支付与取消</div>
+        <div class="ia-u">评价晒单</div>
+        <div class="ia-u">售后入口</div>
+      </div>
+      <div class="ia-col">
+        <div class="ia-h"><i>05</i>我的</div>
+        <div class="ia-u"><b>收藏 / 评价 / 浏览</b></div>
+        <div class="ia-u">成为专家（律师入驻）</div>
+        <div class="ia-u">设置 / 分享 / 关于</div>
+        <div class="ia-u">客服与联系我们</div>
+      </div>
+    </div>
+
+    <div style="margin-top:26px; overflow-x:auto">
+      <table class="spec">
+        <thead><tr><th style="width:72px">编号</th><th style="width:110px">模块</th><th>需求描述</th><th style="width:66px">优先级</th><th style="width:210px">验收要点</th></tr></thead>
+        <tbody>
+          <tr><td>FR-01</td><td>首页</td><td>按定位展示所在城市，首页呈现四大案件分类与推荐律师</td><td><span class="pri p0">P0</span></td><td>定位失败时默认上海；分类点击可直达已筛选列表</td></tr>
+          <tr><td>FR-02</td><td>找律师</td><td>支持案件类型、价格排序、综合排序三类筛选，结果实时刷新</td><td><span class="pri p0">P0</span></td><td>筛选条件可叠加；清空后回到综合排序</td></tr>
+          <tr><td>FR-03</td><td>律师列表</td><td>卡片展示姓名、律所、擅长标签、服务次数、好评率、起步价</td><td><span class="pri p0">P0</span></td><td>价格右对齐高亮；标签最多 3 个，超出折叠</td></tr>
+          <tr><td>FR-04</td><td>律师详情</td><td>展示执业背景、擅长领域、服务与报价、用户评价</td><td><span class="pri p0">P0</span></td><td>执业证信息需与后台审核一致</td></tr>
+          <tr><td>FR-05</td><td>咨询下单</td><td>提供图文咨询、电话咨询、预约面谈三种服务包</td><td><span class="pri p0">P0</span></td><td>价格取律师配置；下单后 15 分钟内未支付自动关闭</td></tr>
+          <tr><td>FR-06</td><td>支付</td><td>支持微信 / 支付宝支付，展示金额与收款方</td><td><span class="pri p0">P0</span></td><td>支付回调幂等；失败可重试且不重复扣款</td></tr>
+          <tr><td>FR-07</td><td>订单</td><td>覆盖待付款、待服务、待评价、已完成、已取消、售后</td><td><span class="pri p0">P0</span></td><td>状态流转只允许按状态机定义的方向</td></tr>
+          <tr><td>FR-08</td><td>消息</td><td>下单后自动建立会话，支持文字、图片与快捷提问</td><td><span class="pri p0">P0</span></td><td>未读红点与最后一条消息同步；敏感词拦截</td></tr>
+          <tr><td>FR-09</td><td>评价</td><td>服务完成后可对律师打分并写评价，展示在详情页</td><td><span class="pri p1">P1</span></td><td>仅已完成订单可评价；一单一评</td></tr>
+          <tr><td>FR-10</td><td>我的</td><td>个人资料、收藏、浏览记录与成为专家入口</td><td><span class="pri p1">P1</span></td><td>未登录点击需先登录</td></tr>
+          <tr><td>FR-11</td><td>律师后台</td><td>资质提交、审核、接单、服务记录与结算</td><td><span class="pri p1">P1</span></td><td>执业证与实名信息双校验，未通过不可接单</td></tr>
+          <tr><td>FR-12</td><td>营销</td><td>优惠券、首单立减、邀请有礼</td><td><span class="pri p2">P2</span></td><td>优惠不可叠加，需在订单页明示抵扣明细</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+<!-- ================= 05 交互 Demo ================= -->
+<section class="sec" id="demo">
+  <div class="wrap">
+    <div class="sec-head"><div class="snum">05 / 可交互 Demo</div><h2>点一点，走完一次真实的咨询下单</h2></div>
+    <p class="lead">这是按原型 1:1 还原的可点击版本：筛选、比价、下单、支付、聊天、评价全部可操作。数据为演示用的本地模拟数据，不会产生任何真实交易。</p>
+    <div class="demo-wrap">
+      <div class="demo-left">
+        <div class="device">
+          <div class="screenwrap has-tabs" id="screenwrap">
+            <div class="statusbar">
+              <span>12:00</span>
+              <div class="st-right"><span class="sig"><i></i><i></i><i></i><i></i></span><span class="batt"></span></div>
+            </div>
+
+            <!-- 首页 -->
+            <div class="view active" id="v-home">
+              <div style="display:flex;align-items:center;justify-content:space-between;padding:8px 13px 2px;flex:0 0 auto">
+                <div style="font-size:10.5px;color:#666">📍 上海市</div>
+                <div style="font-size:15.5px;font-weight:700;letter-spacing:.08em">法悟空</div>
+                <div style="font-size:12px;color:#B0B5BB">⋯</div>
+              </div>
+              <div class="scroll" id="homeScroll"></div>
+            </div>
+
+            <!-- 找律师 -->
+            <div class="view" id="v-list">
+              <div class="navbar"><div class="nback" onclick="go('home')">‹</div><div class="ntitle">找律师</div><div></div></div>
+              <div class="fbar">
+                <button class="fchip" id="fCat" onclick="openCat()">案件类型 ▾</button>
+                <button class="fchip" id="fSort" onclick="setSort('default')">综合排序 ▾</button>
+                <button class="fchip" id="fPrice" onclick="togglePrice()">价格排序 ▾</button>
+                <button class="fchip" onclick="showToast('律师类型筛选即将上线')">律师类型 ▾</button>
+              </div>
+              <div class="scroll" id="listScroll"></div>
+            </div>
+
+            <!-- 律师详情 -->
+            <div class="view" id="v-detail">
+              <div class="navbar"><div class="nback" onclick="backFromDetail()">‹</div><div class="ntitle">律师详情</div><div class="nright" onclick="showToast('已加入收藏')">收藏</div></div>
+              <div class="scroll" id="detailScroll"></div>
+              <div class="dbar" id="detailBar"></div>
+            </div>
+
+            <!-- 订单 -->
+            <div class="view" id="v-orders">
+              <div class="navbar"><div class="nback" onclick="go('profile')">‹</div><div class="ntitle">我的订单</div><div class="nright" onclick="showToast('客服将在 1 小时内联系您')">客服</div></div>
+              <div class="otabs">
+                <div class="otab on" data-tab="all" onclick="setTab('all')">全部</div>
+                <div class="otab" data-tab="unpaid" onclick="setTab('unpaid')">待付款<b id="cUnpaid" style="display:none">0</b></div>
+                <div class="otab" data-tab="toreview" onclick="setTab('toreview')">待评价<b id="cReview" style="display:none">0</b></div>
+                <div class="otab" data-tab="after" onclick="setTab('after')">售后</div>
+              </div>
+              <div class="scroll" id="orderScroll"></div>
+            </div>
+
+            <!-- 消息列表 -->
+            <div class="view" id="v-chatlist">
+              <div class="navbar"><div></div><div class="ntitle">消息</div><div></div></div>
+              <div class="msearch"><div>🔍 搜索</div></div>
+              <div class="mpc"><span>💻</span> windows 微信已登录</div>
+              <div class="scroll" id="convScroll"></div>
+            </div>
+
+            <!-- 聊天 -->
+            <div class="view" id="v-chat">
+              <div class="navbar"><div class="nback" onclick="go('chatlist')">‹</div><div class="ntitle" id="chatTitle">咨询</div><div class="nright" onclick="showToast('已发起电话咨询申请')">电话</div></div>
+              <div class="scroll chatbg" id="chatScroll"></div>
+              <div class="chat-input">
+                <div class="qchips">
+                  <button class="qchip" onclick="quick('我的情况是：')">我的情况是…</button>
+                  <button class="qchip" onclick="quick('咨询费用怎么计算？')">费用怎么算？</button>
+                  <button class="qchip" onclick="quick('方便电话沟通吗？')">方便电话吗？</button>
+                </div>
+                <div class="cinput">
+                  <input id="chatInput" placeholder="输入问题，仅演示环境" onkeydown="if(event.key==='Enter')sendMsg()">
+                  <button onclick="sendMsg()">发送</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- 我的 -->
+            <div class="view" id="v-profile">
+              <div class="scroll">
+                <div class="pf-top">
+                  <div class="pf-ava">张</div>
+                  <div style="flex:1">
+                    <div class="pf-name">张梦雨 <span>♀</span></div>
+                    <div class="pf-city">深圳</div>
+                  </div>
+                  <div style="color:#C4C8CE">›</div>
+                </div>
+                <div class="pf-three">
+                  <div onclick="showToast('收藏夹为空')"><span class="em">★</span><b>收藏</b></div>
+                  <div onclick="go('orders')"><span class="em">💬</span><b>评价</b></div>
+                  <div onclick="showToast('共浏览 26 位律师')"><span class="em">🕘</span><b>浏览</b></div>
+                </div>
+                <div class="pf-menu">
+                  <div class="pf-m" onclick="showToast('已提交入驻意向，审核约 3 个工作日')"><span class="em">👤</span>成为专家<span class="ar">›</span></div>
+                  <div class="pf-m" onclick="showToast('设置：通知、隐私与账号安全')"><span class="em">⚙️</span>设置<span class="ar">›</span></div>
+                  <div class="pf-m" onclick="showToast('链接已复制，可分享给朋友')"><span class="em">↗</span>分享法悟空<span class="ar">›</span></div>
+                  <div class="pf-m" onclick="showToast('客服热线 400-000-0000（演示）')"><span class="em">☎</span>联系我们<span class="ar">›</span></div>
+                  <div class="pf-m" onclick="showToast('法悟空 v1.0 · 演示版本')"><span class="em">ⓘ</span>关于<span class="ar">›</span></div>
+                </div>
+                <div style="text-align:center;font-size:9.5px;color:#B4B9C0;padding:26px 0 12px">演示数据 · 不构成法律意见</div>
+              </div>
+            </div>
+
+            <!-- 底部导航 -->
+            <div class="tabbar">
+              <div class="tab on" data-nav="home" onclick="go('home')">
+                <svg viewBox="0 0 24 24"><path d="M3 11.2 12 4l9 7.2V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg><span>首页</span>
+              </div>
+              <div class="tab" data-nav="list" onclick="go('list')">
+                <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="m15.5 8.5-2.2 5.2-5.3 2.2 2.2-5.2z"/></svg><span>发现</span>
+              </div>
+              <div class="tabplus"><div class="plusbtn" onclick="openPlus()">+</div></div>
+              <div class="tab" data-nav="chatlist" onclick="go('chatlist')">
+                <svg viewBox="0 0 24 24"><path d="M4 5h16a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H9l-5 4V7a2 2 0 0 1 2-2z"/></svg><span class="dot"></span><span>消息</span>
+              </div>
+              <div class="tab" data-nav="profile" onclick="go('profile')">
+                <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.6"/><path d="M4.5 20a7.5 7.5 0 0 1 15 0"/></svg><span>我的</span>
+              </div>
+            </div>
+
+            <div class="ov" id="ov"><div class="sheet" id="sheet"></div></div>
+            <div class="toast" id="toastBox"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="demo-side">
+        <div class="panel">
+          <div class="ptag">INTERACTIVE DEMO</div>
+          <h3 id="demoTitle">首页</h3>
+          <p id="demoDesc">按案件分类进入，或直接从推荐律师里挑一位。点击任意卡片可查看律师详情。</p>
+          <div class="hint" id="demoHint">试一试：点「婚姻家庭」分类，列表会自动按该类型过滤。</div>
+          <button class="reset" onclick="resetDemo()">↺ 重置演示数据</button>
+        </div>
+        <div class="script">
+          <h4>演示脚本（建议按顺序）</h4>
+          <ol>
+            <li><b>首页 → 婚姻家庭</b>：验证分类与列表联动</li>
+            <li><b>找律师 → 价格排序</b>：验证从 ¥39.9 到 ¥288 的可比价</li>
+            <li><b>点任意律师 → 图文咨询</b>：生成一笔待付款订单</li>
+            <li><b>订单页 → 立即支付</b>：状态流转为「待评价」</li>
+            <li><b>消息 → 黄欣律师</b>：发一句话，看自动回复</li>
+            <li><b>我的 → 成为专家</b>：律师入驻入口</li>
+          </ol>
+        </div>
+        <div class="script">
+          <h4>Demo 覆盖的 7 个界面</h4>
+          <div class="cap">
+            <div><b>首页</b> · 分类入口 / 推荐律师</div>
+            <div><b>找律师</b> · 筛选 / 价格排序</div>
+            <div><b>律师详情</b> · 三档报价 / 评价</div>
+            <div><b>消息</b> · 会话列表 / 未读红点</div>
+            <div><b>聊天</b> · 快捷提问 / 自动回复</div>
+            <div><b>订单</b> · 支付 / 评价 / 删除</div>
+            <div><b>我的</b> · 律师入驻 / 设置</div>
+            <div><b>中间「+」</b> · 快捷发起咨询</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- ================= 06 原型原稿 ================= -->
+<section class="sec alt" id="proto">
+  <div class="wrap">
+    <div class="sec-head"><div class="snum">06 / 原型原稿</div><h2>Mockplus 里画的 5 屏原稿</h2></div>
+    <p class="lead">原稿导出的 PDF 与工程文件可下载。上面的交互 Demo 即按这 5 屏 1:1 还原，便于对照「设计稿 → 可点击实现」的还原度。点击任意一张可放大查看。</p>
+    <div class="gal">
+      <div class="gitem" onclick="openLightbox('assets/screen-home.png')">
+        <img src="assets/screen-home.png" alt="首页原稿">
+        <div class="gcap"><b>01 首页</b><span>分类入口 + 推荐律师</span></div>
+      </div>
+      <div class="gitem" onclick="openLightbox('assets/screen-lawyers.png')">
+        <img src="assets/screen-lawyers.png" alt="找律师原稿">
+        <div class="gcap"><b>02 找律师</b><span>四维筛选 + 律师列表</span></div>
+      </div>
+      <div class="gitem" onclick="openLightbox('assets/screen-messages.png')">
+        <img src="assets/screen-messages.png" alt="消息原稿">
+        <div class="gcap"><b>03 消息</b><span>会话列表与多端在线</span></div>
+      </div>
+      <div class="gitem" onclick="openLightbox('assets/screen-orders.png')">
+        <img src="assets/screen-orders.png" alt="订单原稿">
+        <div class="gcap"><b>04 我的订单</b><span>全生命周期状态</span></div>
+      </div>
+      <div class="gitem" onclick="openLightbox('assets/screen-profile.png')">
+        <img src="assets/screen-profile.png" alt="我的原稿">
+        <div class="gcap"><b>05 我的</b><span>个人中心 + 专家入驻</span></div>
+      </div>
+    </div>
+    <div style="margin-top:22px; display:flex; gap:12px; flex-wrap:wrap">
+      <a class="btn btn-gold" href="assets/prototype.pdf" download>↓ 下载原型 PDF（5 页）</a>
+      <a class="btn" style="border:1px solid var(--line); background:#fff; color:var(--ink3)" href="assets/prototype-source.mdrp" download>↓ 下载 Mockplus 工程文件</a>
+    </div>
+  </div>
+</section>
+<div class="lightbox" id="lightbox" onclick="closeLightbox()"><span class="close">×</span><img id="lbImg" src="" alt="原型大图"></div>
+
+<!-- ================= 07 核心流程 ================= -->
+<section class="sec" id="flow">
+  <div class="wrap">
+    <div class="sec-head"><div class="snum">07 / 核心流程</div><h2>从「问一句」到「留一条评价」</h2></div>
+    <p class="lead">流程设计的关键不是画得全，而是定义清楚每一步的异常分支：未支付怎么办、律师不响应怎么办、服务不满意怎么办。</p>
+
+    <div class="flowbox">
+      <h4>流程一：用户咨询主流程</h4>
+      <p>点击路径遵循「先分类、再比价、后沟通」三段式，保证用户在任何一步都能看到价格。</p>
+      <svg viewBox="0 0 1200 300" role="img" aria-label="用户咨询主流程">
+        <defs><marker id="m1" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 z" fill="#C9A227"/></marker></defs>
+        <rect class="node" x="40" y="40" width="190" height="56" rx="8"/><text class="ftxt" x="135" y="68" text-anchor="middle" dominant-baseline="middle">进入首页</text>
+        <rect class="node" x="270" y="40" width="190" height="56" rx="8"/><text class="ftxt" x="365" y="68" text-anchor="middle" dominant-baseline="middle">选择案件类型</text>
+        <rect class="node" x="500" y="40" width="190" height="56" rx="8"/><text class="ftxt" x="595" y="68" text-anchor="middle" dominant-baseline="middle">浏览律师列表</text>
+        <rect class="node" x="730" y="40" width="190" height="56" rx="8"/><text class="ftxt" x="825" y="68" text-anchor="middle" dominant-baseline="middle">查看律师详情</text>
+        <rect class="node node-k" x="960" y="40" width="190" height="56" rx="8"/><text class="ftxt-w" x="1055" y="68" text-anchor="middle" dominant-baseline="middle">选择咨询方式</text>
+        <line class="arrow" x1="230" y1="68" x2="266" y2="68" marker-end="url(#m1)"/>
+        <line class="arrow" x1="460" y1="68" x2="496" y2="68" marker-end="url(#m1)"/>
+        <line class="arrow" x1="690" y1="68" x2="726" y2="68" marker-end="url(#m1)"/>
+        <line class="arrow" x1="920" y1="68" x2="956" y2="68" marker-end="url(#m1)"/>
+        <line class="arrow" x1="1055" y1="96" x2="1055" y2="186" marker-end="url(#m1)"/>
+        <rect class="node node-k" x="960" y="190" width="190" height="56" rx="8"/><text class="ftxt-w" x="1055" y="218" text-anchor="middle" dominant-baseline="middle">支付下单</text>
+        <rect class="node" x="730" y="190" width="190" height="56" rx="8"/><text class="ftxt" x="825" y="218" text-anchor="middle" dominant-baseline="middle">在线沟通</text>
+        <rect class="node" x="500" y="190" width="190" height="56" rx="8"/><text class="ftxt" x="595" y="218" text-anchor="middle" dominant-baseline="middle">服务完成</text>
+        <rect class="node" x="270" y="190" width="190" height="56" rx="8"/><text class="ftxt" x="365" y="218" text-anchor="middle" dominant-baseline="middle">评价与复购</text>
+        <line class="arrow" x1="960" y1="218" x2="924" y2="218" marker-end="url(#m1)"/>
+        <line class="arrow" x1="730" y1="218" x2="694" y2="218" marker-end="url(#m1)"/>
+        <line class="arrow" x1="500" y1="218" x2="464" y2="218" marker-end="url(#m1)"/>
+        <text class="ftxt-sm" x="1055" y="130" text-anchor="middle">下单即生成会话</text>
+        <text class="ftxt-sm" x="595" y="282" text-anchor="middle">完成后 7 天内可评价，好评率回写列表页</text>
+      </svg>
+    </div>
+
+    <div class="flowbox">
+      <h4>流程二：订单状态机</h4>
+      <p>实线为主链路，虚线为异常分支。所有状态变更由服务端校验，客户端不可跳级。</p>
+      <svg viewBox="0 0 1200 320" role="img" aria-label="订单状态机">
+        <defs><marker id="m2" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 z" fill="#C9A227"/></marker>
+        <marker id="m3" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 z" fill="#B9BFC7"/></marker></defs>
+        <rect class="node" x="40" y="56" width="190" height="54" rx="8"/><text class="ftxt" x="135" y="83" text-anchor="middle" dominant-baseline="middle">待付款</text>
+        <rect class="node" x="270" y="56" width="190" height="54" rx="8"/><text class="ftxt" x="365" y="83" text-anchor="middle" dominant-baseline="middle">待服务</text>
+        <rect class="node" x="500" y="56" width="190" height="54" rx="8"/><text class="ftxt" x="595" y="83" text-anchor="middle" dominant-baseline="middle">服务中</text>
+        <rect class="node" x="730" y="56" width="190" height="54" rx="8"/><text class="ftxt" x="825" y="83" text-anchor="middle" dominant-baseline="middle">待评价</text>
+        <rect class="node" x="960" y="56" width="190" height="54" rx="8"/><text class="ftxt" x="1055" y="83" text-anchor="middle" dominant-baseline="middle">已完成</text>
+        <line class="arrow" x1="230" y1="83" x2="266" y2="83" marker-end="url(#m2)"/>
+        <line class="arrow" x1="460" y1="83" x2="496" y2="83" marker-end="url(#m2)"/>
+        <line class="arrow" x1="690" y1="83" x2="726" y2="83" marker-end="url(#m2)"/>
+        <line class="arrow" x1="920" y1="83" x2="956" y2="83" marker-end="url(#m2)"/>
+        <rect class="node" x="40" y="220" width="190" height="54" rx="8"/><text class="ftxt" x="135" y="247" text-anchor="middle" dominant-baseline="middle">已取消</text>
+        <rect class="node" x="500" y="220" width="190" height="54" rx="8"/><text class="ftxt" x="595" y="247" text-anchor="middle" dominant-baseline="middle">退款中</text>
+        <rect class="node" x="730" y="220" width="190" height="54" rx="8"/><text class="ftxt" x="825" y="247" text-anchor="middle" dominant-baseline="middle">已退款</text>
+        <line class="arrow-d" x1="135" y1="110" x2="135" y2="216" marker-end="url(#m3)"/>
+        <line class="arrow-d" x1="595" y1="110" x2="595" y2="216" marker-end="url(#m3)"/>
+        <line class="arrow-d" x1="730" y1="247" x2="694" y2="247" marker-end="url(#m3)"/>
+        <text class="ftxt-sm" x="160" y="170">15 分钟未支付自动关闭</text>
+        <text class="ftxt-sm" x="520" y="170">律师 48h 未响应 / 服务不满意</text>
+        <text class="ftxt-sm" x="1055" y="130" text-anchor="middle">评价后不可修改</text>
+      </svg>
+    </div>
+
+    <div class="flowbox">
+      <h4>流程三：律师入驻与质量考核</h4>
+      <p>供给质量是平台的生命线：资质双校验 + 试运营 + 周期性考核，不合格直接下架接单权限。</p>
+      <svg viewBox="0 0 1200 200" role="img" aria-label="律师入驻流程">
+        <defs><marker id="m4" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 z" fill="#C9A227"/></marker></defs>
+        <rect class="node" x="40" y="60" width="190" height="54" rx="8"/><text class="ftxt" x="135" y="87" text-anchor="middle" dominant-baseline="middle">提交入驻资料</text>
+        <rect class="node" x="270" y="60" width="190" height="54" rx="8"/><text class="ftxt" x="365" y="87" text-anchor="middle" dominant-baseline="middle">资质核验</text>
+        <rect class="node" x="500" y="60" width="190" height="54" rx="8"/><text class="ftxt" x="595" y="87" text-anchor="middle" dominant-baseline="middle">试运营 / 面谈</text>
+        <rect class="node" x="730" y="60" width="190" height="54" rx="8"/><text class="ftxt" x="825" y="87" text-anchor="middle" dominant-baseline="middle">上线接单</text>
+        <rect class="node" x="960" y="60" width="190" height="54" rx="8"/><text class="ftxt" x="1055" y="87" text-anchor="middle" dominant-baseline="middle">服务质量考核</text>
+        <line class="arrow" x1="230" y1="87" x2="266" y2="87" marker-end="url(#m4)"/>
+        <line class="arrow" x1="460" y1="87" x2="496" y2="87" marker-end="url(#m4)"/>
+        <line class="arrow" x1="690" y1="87" x2="726" y2="87" marker-end="url(#m4)"/>
+        <line class="arrow" x1="920" y1="87" x2="956" y2="87" marker-end="url(#m4)"/>
+        <text class="ftxt-sm" x="365" y="140" text-anchor="middle">律师执业证 + 身份证 + 所属律所</text>
+        <text class="ftxt-sm" x="1055" y="140" text-anchor="middle">响应率 / 好评率 / 投诉率</text>
+      </svg>
+    </div>
+  </div>
+</section>
+<!-- ================= 08 指标 ================= -->
+<section class="sec alt" id="metrics">
+  <div class="wrap">
+    <div class="sec-head"><div class="snum">08 / 数据指标</div><h2>用一个漏斗盯住转化，而不是盯住曝光</h2></div>
+    <p class="lead">以下为 V1.0 上线 3 个月的设计目标（示意值，非真实业务数据）。漏斗口径统一为「同一自然周内去重的用户」，避免跨周重复计数。</p>
+    <div class="grid2" style="align-items:start; gap:22px">
+      <div class="funnel">
+        <div class="frow"><div class="fname">首页曝光</div><div class="ftrack"><div class="ffill" style="width:100%">100%</div></div></div>
+        <div class="frow"><div class="fname">进入律师列表</div><div class="ftrack"><div class="ffill" style="width:38%">38%</div></div></div>
+        <div class="frow"><div class="fname">打开律师详情</div><div class="ftrack"><div class="ffill" style="width:22%">22%</div></div></div>
+        <div class="frow"><div class="fname">发起下单</div><div class="ftrack"><div class="ffill" style="width:11%">11%</div></div></div>
+        <div class="frow"><div class="fname">支付成功</div><div class="ftrack"><div class="ffill" style="width:8.6%">8.6%</div></div></div>
+        <div class="frow"><div class="fname">服务完成</div><div class="ftrack"><div class="ffill" style="width:7.2%">7.2%</div></div></div>
+        <div class="frow"><div class="fname">完成评价</div><div class="ftrack"><div class="ffill" style="width:5.1%">5.1%</div></div></div>
+      </div>
+      <div class="kpis" style="grid-template-columns:1fr 1fr; margin-top:0">
+        <div class="kpi"><em>详情页转化率</em><b>≥ 22%</b><span>详情 → 下单</span></div>
+        <div class="kpi"><em>支付成功率</em><b>≥ 78%</b><span>下单 → 支付</span></div>
+        <div class="kpi"><em>30 分钟响应率</em><b>≥ 90%</b><span>律师首次回复</span></div>
+        <div class="kpi"><em>完单率</em><b>≥ 92%</b><span>支付 → 完成</span></div>
+        <div class="kpi"><em>好评率</em><b>≥ 95%</b><span>4 星及以上</span></div>
+        <div class="kpi"><em>30 日复购率</em><b>≥ 18%</b><span>二次咨询</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 09 规划 ================= -->
+<section class="sec" id="roadmap">
+  <div class="wrap">
+    <div class="sec-head"><div class="snum">09 / 版本规划与风险</div><h2>先跑通一笔订单，再谈规模</h2></div>
+    <p class="lead">V1.0 只做「能下单、能沟通、能评价」的最小闭环，把复杂的分账、会员、企业服务放到后面，避免第一版就做重。</p>
+    <div class="road">
+      <div class="rcard">
+        <div class="v">V1.0 · 本期</div>
+        <h4>最小可用闭环</h4>
+        <ul>
+          <li>首页分类 + 律师列表 + 详情</li>
+          <li>三档咨询报价与下单支付</li>
+          <li>订单状态机（待付款 / 待评价 / 已完成）</li>
+          <li>站内聊天 + 快捷提问</li>
+          <li>个人中心与律师入驻入口</li>
+        </ul>
+      </div>
+      <div class="rcard">
+        <div class="v">V1.1 · 增强</div>
+        <h4>体验与供给治理</h4>
+        <ul>
+          <li>评价晒单、标签化好评</li>
+          <li>退款 / 售后工单</li>
+          <li>律师工作台与接单提醒</li>
+          <li>优惠券与首单立减</li>
+          <li>举报与平台介入仲裁</li>
+        </ul>
+      </div>
+      <div class="rcard">
+        <div class="v">V2.0 · 增长</div>
+        <h4>效率与规模化</h4>
+        <ul>
+          <li>AI 法律问答预诊，降低无效咨询</li>
+          <li>案件进度跟踪与材料清单</li>
+          <li>企业版（合同审查包年）</li>
+          <li>多城市供给分层运营</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="risk">
+      <table class="spec">
+        <thead><tr><th style="width:150px">风险</th><th>说明</th><th style="width:74px">等级</th><th style="width:280px">应对措施</th></tr></thead>
+        <tbody>
+          <tr><td>律师资质合规</td><td>虚假执业信息、跨属地执业</td><td><span class="pri p0">P0</span></td><td>执业证 + 身份证 + 律所三重校验，季度抽检，违规下架</td></tr>
+          <tr><td>资金与分账</td><td>平台代收涉及支付合规</td><td><span class="pri p0">P0</span></td><td>与持牌支付机构合作，资金不过平台自有账户</td></tr>
+          <tr><td>服务纠纷</td><td>律师未履约、用户不满意</td><td><span class="pri p0">P0</span></td><td>聊天与订单全留痕，48h 未响应自动可退</td></tr>
+          <tr><td>隐私与内容</td><td>案情涉及身份证、病历等敏感信息</td><td><span class="pri p1">P1</span></td><td>敏感词过滤、图片脱敏提示、最小化采集</td></tr>
+          <tr><td>冷启动供给</td><td>初期律师数量不足导致体验差</td><td><span class="pri p1">P1</span></td><td>先聚焦 2 城 3 品类，邀请制入驻，保底响应 SLA</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="grid4" style="margin-top:24px">
+      <div class="card"><h3><span class="ico">✦</span>原型原稿</h3><p>Mockplus 5 屏 + 可下载 PDF / 工程文件</p></div>
+      <div class="card"><h3><span class="ico">◈</span>可交互 Demo</h3><p>筛选、下单、支付、聊天、评价全流程可点</p></div>
+      <div class="card"><h3><span class="ico">▤</span>PRD 需求</h3><p>12 条编号需求 + 优先级 + 验收要点</p></div>
+      <div class="card"><h3><span class="ico">⟳</span>流程与指标</h3><p>3 条流程图 + 转化漏斗 + 6 项 KPI</p></div>
+    </div>
+  </div>
+</section>
+
+<footer class="foot">
+  <div class="wrap">
+    <div><b>法悟空 · 法律服务平台 App</b>　产品方案 / 原型 / 可交互 Demo</div>
+    <div>演示数据仅用于作品集展示，不构成法律意见　·　2026</div>
+  </div>
+</footer>
+<script>
+/* ================= 演示数据 ================= */
+var LAWYERS = [
+  { id:'lizhen', name:'李珍', firm:'杭州市中级人民法院', price:288, tags:['买卖合同','交通事故','遗产继承'], cases:8871, rate:99.9, bg:'linear-gradient(140deg,#5B7FA8,#2F4C6E)',
+    exp:'前法官 · 民商事审判 12 年', intro:'曾任杭州市中级人民法院民商事审判庭法官，审理合同、买卖与遗产类案件 1200 余件。擅长从裁判视角评估胜诉概率与调解空间。' },
+  { id:'huangxin', name:'黄欣', firm:'华东政法大学经济法硕士', price:198, tags:['合同纠纷','借贷纠纷','劳务纠纷'], cases:7698, rate:98.9, bg:'linear-gradient(140deg,#9A7C6A,#6B4F40)',
+    exp:'执业 8 年 · 合同与借贷', intro:'华东政法大学经济法硕士，专注合同、借贷与劳务争议，累计服务个人客户 3000 余人，擅长以调解方式快速回款。' },
+  { id:'zhangjun', name:'张军', firm:'北京星泉律师事务所 合伙人', price:188, tags:['刑事辩护','交通事故','遗产继承'], cases:5901, rate:97.9, bg:'linear-gradient(140deg,#4C6B92,#243B57)',
+    exp:'合伙人 · 刑事与事故', intro:'北京星泉律师事务所合伙人，主办刑事案件与交通事故理赔，熟悉保险理赔与伤残鉴定流程。' },
+  { id:'liubin', name:'刘斌', firm:'天津市大同律师事务所', price:88, tags:['借贷纠纷','婚姻家庭','劳务纠纷'], cases:4676, rate:97.6, bg:'linear-gradient(140deg,#5E7E8E,#33505F)',
+    exp:'执业 6 年 · 家事与债务', intro:'天津市大同律师事务所律师，长期处理民间借贷与婚姻家事案件，注重隐私保护与沟通耐心。' },
+  { id:'zhaoyunfei', name:'赵云飞', firm:'上海众合律师事务所', price:39.9, tags:['婚姻家庭','借贷纠纷','遗产继承'], cases:4320, rate:98.7, bg:'linear-gradient(140deg,#7E7A8E,#4A465C)',
+    exp:'青年律师 · 高性价比', intro:'上海众合律师事务所青年律师，主打小额高频咨询，首次咨询 39.9 元起，擅长把复杂流程拆成可执行步骤。' }
+];
+
+var CONVS = [
+  { id:'huangxin', name:'黄欣律师', time:'16:31', last:'请问您有什么需要咨询的呢？',
+    msgs:[ {me:false,t:'请问您有什么需要咨询的呢？'}, {me:false,t:'我是黄欣，执业 8 年，主要做合同与借贷纠纷。'} ] },
+  { id:'lizhen', name:'李珍', time:'9:30', last:'您好！这边确认就可以了',
+    msgs:[ {me:false,t:'您好！这边确认就可以了'} ] },
+  { id:'zhangjun', name:'张军', time:'昨天', last:'您看明天可以吗？',
+    msgs:[ {me:false,t:'您看明天可以吗？'}, {me:false,t:'面谈地址：北京市朝阳区建国路 88 号（演示）'} ] }
+];
+
+var state = { view:'home', cat:null, sort:'default', priceDir:'none', lawyer:null, tab:'all', conv:'huangxin', reviewStar:5 };
+
+function seedOrders(){
+  return [
+    { id:1, name:'张军', firm:'北京星泉律师事务所', price:188, tags:'刑事辩护、交通事故、遗产继承', status:'unpaid', time:'2026-06-09 20:38' },
+    { id:2, name:'黄欣', firm:'华东政法大学经济法硕士', price:59.9, tags:'合同纠纷、借贷纠纷、劳务纠纷', status:'done', time:'2025-11-12 22:59' },
+    { id:3, name:'刘斌', firm:'天津市大同律师事务所', price:19.9, tags:'借贷纠纷、婚姻家庭、遗产继承…', status:'toreview', time:'2021-04-16 13:36' }
+  ];
+}
+var ORDERS = seedOrders();
+
+var PANEL = {
+  home:{ t:'首页', d:'按案件分类进入，或直接从推荐律师里挑一位。点击任意卡片可查看律师详情。', h:'试一试：点「婚姻家庭」分类，列表会自动按该类型过滤。' },
+  list:{ t:'找律师', d:'筛选条件实时生效，价格永远右对齐展示，让用户先建立预算预期再决策。', h:'试一试：点两次「价格排序」，观察升序 / 降序切换。' },
+  detail:{ t:'律师详情', d:'执业背景、擅长领域、三档报价与真实评价集中呈现，减少来回询价。', h:'试一试：点「图文咨询」右侧的「选择」，会生成一笔待付款订单。' },
+  orders:{ t:'我的订单', d:'覆盖待付款、待评价、已完成、已取消与售后，操作按钮随状态变化。', h:'试一试：点「立即支付」，订单会流转为「待评价」。' },
+  chatlist:{ t:'消息', d:'下单后自动建立会话，未读红点与最后一条消息同步，支持图片与快捷提问。', h:'试一试：点「黄欣律师」，发送任意一句话。' },
+  chat:{ t:'在线沟通', d:'会话与订单绑定，所有沟通留痕，作为平台处理纠纷的依据。', h:'试一试：点下方快捷问题，或直接回车发送。' },
+  profile:{ t:'我的', d:'个人资料、收藏浏览与「成为专家」入口，律师入驻由此发起。', h:'试一试：点「成为专家」，查看入驻流程提示。' }
+};
+
+/* ================= 通用工具 ================= */
+function $(id){ return document.getElementById(id); }
+
+function showToast(msg){
+  var t = $('toastBox');
+  t.textContent = msg; t.classList.add('show');
+  clearTimeout(t._tm); t._tm = setTimeout(function(){ t.classList.remove('show'); }, 2200);
+}
+
+function money(n){ return Number(n) % 1 === 0 ? Number(n) : Number(n).toFixed(1); }
+
+function nowStr(){
+  var d = new Date(), p = function(x){ return x < 10 ? '0' + x : x; };
+  return d.getFullYear() + '-' + p(d.getMonth()+1) + '-' + p(d.getDate()) + ' ' + p(d.getHours()) + ':' + p(d.getMinutes());
+}
+
+function findLawyer(id){ for (var i=0;i<LAWYERS.length;i++){ if (LAWYERS[i].id === id) return LAWYERS[i]; } return null; }
+
+function lawyerCard(l){
+  return '<div class="law" onclick="openLawyer(\'' + l.id + '\')">'
+    + '<div class="ava" style="background:' + l.bg + '">' + l.name.charAt(0) + '</div>'
+    + '<div class="li"><div class="ln">' + l.name + ' <em>律师</em></div>'
+    + '<div class="lf">' + l.firm + '</div>'
+    + '<div class="lt">' + l.tags.map(function(t){ return '<i>' + t + '</i>'; }).join('') + '</div>'
+    + '<div class="ls">服务次数：' + l.cases + '　好评率：' + l.rate + '%</div></div>'
+    + '<div class="lp">¥' + money(l.price) + '<em>次/起</em></div></div>';
+}
+
+/* ================= 视图切换 ================= */
+function go(view){
+  state.view = view;
+  var vs = document.querySelectorAll('.view');
+  for (var i=0;i<vs.length;i++) vs[i].classList.remove('active');
+  var target = $('v-' + view);
+  if (target) target.classList.add('active');
+  var wrap = $('screenwrap');
+  var tabs = ['home','list','orders','chatlist','profile'];
+  if (tabs.indexOf(view) > -1) wrap.classList.add('has-tabs'); else wrap.classList.remove('has-tabs');
+  var navs = document.querySelectorAll('.tab');
+  for (var j=0;j<navs.length;j++){
+    navs[j].classList.toggle('on', navs[j].getAttribute('data-nav') === (view === 'orders' ? 'profile' : view));
+  }
+  var p = PANEL[view]; if (p){ $('demoTitle').textContent = p.t; $('demoDesc').textContent = p.d; $('demoHint').textContent = p.h; }
+  if (view === 'home') renderHome();
+  if (view === 'list') renderList();
+  if (view === 'orders') renderOrders();
+  if (view === 'chatlist') renderConvs();
+  var sc = target ? target.querySelector('.scroll') : null;
+  if (sc) sc.scrollTop = 0;
+}
+
+/* ================= 首页 ================= */
+function renderHome(){
+  var cats = [ ['婚姻家庭','💍'], ['租赁纠纷','🏠'], ['劳动工伤','🛠️'], ['合同事务','📄'] ];
+  var html = '<div class="banner" onclick="go(\'list\')">'
+    + '<div class="doc">⚖️</div><b>法律问题<br>先问一句再决定</b>'
+    + '<span>首次图文咨询 ¥39.9 起</span><div class="bk">立即咨询 →</div></div>';
+  html += '<div class="cats">' + cats.map(function(c){
+    return '<div class="cat" onclick="openCatWith(\'' + c[0] + '\')"><div class="ci">' + c[1] + '</div><span>' + c[0] + '</span></div>';
+  }).join('') + '</div>';
+  html += '<div class="sec-h"><b>推荐律师</b><span onclick="go(\'list\')">查看全部 ›</span></div>';
+  html += LAWYERS.slice(0,3).map(lawyerCard).join('');
+  html += '<div style="text-align:center;font-size:9px;color:#B4B9C0;padding:10px 0 16px">平台已对律师执业资质进行核验（演示）</div>';
+  $('homeScroll').innerHTML = html;
+}
+
+/* ================= 列表与筛选 ================= */
+/* 首页四类入口是「用户语言」，律师标签是「专业语言」，这里做一层别名映射 */
+var CAT_ALIAS = {
+  '婚姻家庭': ['婚姻', '继承'],
+  '租赁纠纷': ['租赁', '买卖', '合同'],
+  '劳动工伤': ['劳动', '劳务', '工伤'],
+  '合同事务': ['合同', '买卖'],
+  '借贷纠纷': ['借贷'],
+  '遗产继承': ['遗产', '继承']
+};
+function matchCat(l, cat){
+  var keys = CAT_ALIAS[cat] || [cat];
+  for (var i=0;i<keys.length;i++){
+    for (var j=0;j<l.tags.length;j++){
+      if (l.tags[j].indexOf(keys[i]) > -1) return true;
+    }
+  }
+  return false;
+}
+function renderList(){
+  var arr = LAWYERS.filter(function(l){ return !state.cat || matchCat(l, state.cat); });
+  arr = arr.slice().sort(function(a,b){
+    if (state.sort === 'price') return state.priceDir === 'asc' ? a.price - b.price : b.price - a.price;
+    return b.cases - a.cases;
+  });
+  var html = arr.length ? arr.map(lawyerCard).join('') : '<div style="text-align:center;color:#9AA0A6;font-size:11px;padding:46px 0">该分类下暂无律师，试试其他类型</div>';
+  $('listScroll').innerHTML = html;
+  $('fCat').textContent = (state.cat || '案件类型') + ' ▾';
+  $('fCat').classList.toggle('on', !!state.cat);
+  $('fSort').textContent = state.sort === 'default' ? '综合排序 ▾' : '综合排序';
+  $('fSort').classList.toggle('on', state.sort === 'default');
+  $('fPrice').textContent = state.priceDir === 'none' ? '价格排序 ▾' : (state.priceDir === 'asc' ? '价格 ↑' : '价格 ↓');
+  $('fPrice').classList.toggle('on', state.priceDir !== 'none');
+}
+
+function setSort(kind){ state.sort = kind; if (kind === 'default') state.priceDir = 'none'; renderList(); }
+
+function togglePrice(){
+  state.sort = 'price';
+  state.priceDir = state.priceDir === 'asc' ? 'desc' : 'asc';
+  renderList();
+  showToast(state.priceDir === 'asc' ? '已按价格从低到高排序' : '已按价格从高到低排序');
+}
+
+function openCatWith(name){
+  state.cat = (state.cat === name ? null : name);
+  go('list');
+  renderList();
+}
+
+function openCat(){
+  var opts = ['全部案件','婚姻家庭','租赁纠纷','劳动工伤','合同事务','刑事辩护','交通事故','借贷纠纷','遗产继承'];
+  var html = '<h4>按案件类型筛选</h4><div class="optlist">' + opts.map(function(o){
+    var on = (o === '全部案件' && !state.cat) || state.cat === o;
+    return '<div class="opt' + (on ? ' on' : '') + '" onclick="pickCat(\'' + o + '\')">' + o + (on ? '　✓' : '') + '</div>';
+  }).join('') + '</div>';
+  openSheet(html);
+}
+
+function pickCat(o){
+  state.cat = (o === '全部案件') ? null : o;
+  closeSheet(); go('list'); renderList();
+  showToast(state.cat ? ('已筛选：' + state.cat) : '已显示全部律师');
+}
+
+/* ================= 详情 ================= */
+function openLawyer(id){ state.lawyer = id; renderDetail(); go('detail'); }
+
+function backFromDetail(){ go('list'); }
+
+function renderDetail(){
+  var l = findLawyer(state.lawyer); if (!l) return;
+  var phone = Math.round(l.price * 1.5 * 10) / 10;
+  var meet = Math.round(l.price * 3);
+  var html = '<div class="dt-top"><div class="dt-row">'
+    + '<div class="dt-ava" style="background:' + l.bg + '">' + l.name.charAt(0) + '</div>'
+    + '<div style="flex:1;min-width:0"><div class="dt-name">' + l.name + ' <i>律师</i></div>'
+    + '<div class="dt-firm">' + l.firm + '</div>'
+    + '<div class="dt-tags">' + l.tags.map(function(t){ return '<i>' + t + '</i>'; }).join('') + '</div></div></div>'
+    + '<div class="dt-stats"><div><b>' + l.cases + '</b><span>服务次数</span></div>'
+    + '<div><b>' + l.rate + '%</b><span>好评率</span></div>'
+    + '<div><b>≤30 分</b><span>平均响应</span></div></div></div>';
+  html += '<div class="svc"><div class="svc-h">服务与报价</div>'
+    + serviceRow('图文咨询', '不限次数消息，48 小时内答复', l.price, l.id, '图文咨询')
+    + serviceRow('电话咨询', '15 分钟一对一通话', phone, l.id, '电话咨询')
+    + serviceRow('预约面谈', '线下 60 分钟，含材料清单', meet, l.id, '预约面谈')
+    + '</div>';
+  html += '<div class="blk"><h5>律师简介</h5><p>' + l.exp + '。' + l.intro + '</p></div>';
+  html += '<div class="blk"><h5>擅长领域</h5><div class="dt-tags">' + l.tags.map(function(t){ return '<i>' + t + '</i>'; }).join('') + '</div></div>';
+  html += '<div class="blk"><h5>用户评价</h5>'
+    + '<div class="rev"><div class="rev-n">王**　<span class="rev-s">★★★★★</span></div><div class="rev-t">沟通很耐心，把我的情况拆成了几步，知道下一步该做什么了。</div></div>'
+    + '<div class="rev"><div class="rev-n">李**　<span class="rev-s">★★★★★</span></div><div class="rev-t">回复很快，费用提前说清楚了，没有额外收费。</div></div>'
+    + '</div>';
+  $('detailScroll').innerHTML = html;
+  $('detailBar').innerHTML = '<div class="pr">起步价 <b>¥' + money(l.price) + '</b></div>'
+    + '<button onclick="createOrder(\'' + l.id + '\',\'图文咨询\',' + l.price + ')">立即咨询</button>';
+}
+
+function serviceRow(name, desc, price, id, type){
+  return '<div class="svc-i"><div class="svc-l"><b>' + name + '</b><span>' + desc + '</span></div>'
+    + '<div class="svc-r"><em>¥' + money(price) + '</em>'
+    + '<button class="selbtn" onclick="createOrder(\'' + id + '\',\'' + type + '\',' + price + ')">选择</button></div></div>';
+}
+
+/* ================= 下单与订单 ================= */
+function createOrder(id, type, price){
+  var l = findLawyer(id); if (!l) return;
+  ORDERS.unshift({ id: Date.now(), name: l.name, firm: l.firm, price: price, tags: l.tags.join('、'), status:'unpaid', time: nowStr(), type: type });
+  closeSheet();
+  showToast('已生成订单：' + type + ' ¥' + money(price));
+  updateBadges();
+  setTimeout(function(){ go('orders'); setTab('unpaid'); }, 850);
+}
+
+var STATUS = {
+  unpaid:{ t:'等待支付', c:'s-unpaid' }, toreview:{ t:'待评价', c:'s-toreview' },
+  done:{ t:'已完成', c:'s-done' }, canceled:{ t:'已取消', c:'s-cancel' }, after:{ t:'售后中', c:'s-toreview' }
+};
+
+function renderOrders(){
+  var arr = ORDERS.filter(function(o){
+    if (state.tab === 'unpaid') return o.status === 'unpaid';
+    if (state.tab === 'toreview') return o.status === 'toreview';
+    if (state.tab === 'after') return o.status === 'after';
+    return true;
+  });
+  if (!arr.length){
+    $('orderScroll').innerHTML = '<div style="text-align:center;color:#9AA0A6;font-size:11px;padding:56px 0">暂无相关订单</div>';
+    return;
+  }
+  $('orderScroll').innerHTML = arr.map(function(o){
+    var st = STATUS[o.status] || STATUS.done;
+    var acts = '';
+    if (o.status === 'unpaid'){
+      acts = '<button class="obtn" onclick="askCancel(' + o.id + ')">取消订单</button>'
+           + '<button class="obtn pri" onclick="askPay(' + o.id + ')">立即支付</button>';
+    } else if (o.status === 'toreview'){
+      acts = '<button class="obtn" onclick="showToast(\'服务已确认完成\')">已完成</button>'
+           + '<button class="obtn pri" onclick="askReview(' + o.id + ')">评价</button>';
+    } else {
+      acts = '<button class="obtn" onclick="delOrder(' + o.id + ')">删除订单</button>';
+    }
+    return '<div class="ocard"><div class="orow">'
+      + '<div class="oava" style="background:linear-gradient(140deg,#4C6B92,#243B57)">' + o.name.charAt(0) + '</div>'
+      + '<div class="oinfo"><div class="oname">' + o.name + ' <em>律师</em></div>'
+      + '<div class="ofirm">' + o.firm + '</div>'
+      + '<div class="otags">擅长：' + o.tags + '</div></div>'
+      + '<div class="oright"><div class="ostatus ' + st.c + '">' + st.t + '</div>'
+      + '<div class="oprice">¥' + money(o.price) + '</div></div></div>'
+      + '<div class="ofoot"><div class="otime">' + o.time + '</div><div class="oacts">' + acts + '</div></div></div>';
+  }).join('');
+  updateBadges();
+}
+
+function setTab(t){
+  state.tab = t;
+  var tabs = document.querySelectorAll('.otab');
+  for (var i=0;i<tabs.length;i++) tabs[i].classList.toggle('on', tabs[i].getAttribute('data-tab') === t);
+  renderOrders();
+}
+
+function updateBadges(){
+  var u = 0, r = 0;
+  ORDERS.forEach(function(o){ if(o.status==='unpaid') u++; if(o.status==='toreview') r++; });
+  var cu = $('cUnpaid'), cr = $('cReview');
+  if (cu){ cu.textContent = u; cu.style.display = u ? 'inline-grid' : 'none'; }
+  if (cr){ cr.textContent = r; cr.style.display = r ? 'inline-grid' : 'none'; }
+}
+
+function askPay(id){
+  var o = findOrder(id); if (!o) return;
+  openSheet('<h4>确认支付</h4>'
+    + '<div class="row"><span>订单金额</span><b>¥' + money(o.price) + '</b></div>'
+    + '<div class="row"><span>服务类型</span><span>' + (o.type || '图文咨询') + '</span></div>'
+    + '<div class="row"><span>收款方</span><span>法悟空（演示环境）</span></div>'
+    + '<div class="row"><span>支付方式</span><span>微信支付 ✓</span></div>'
+    + '<button class="bigbtn" onclick="doPay(' + id + ')">确认支付 ¥' + money(o.price) + '</button>');
+}
+
+function doPay(id){
+  var o = findOrder(id); if (!o) return;
+  o.status = 'toreview'; closeSheet(); renderOrders();
+  showToast('支付成功，律师将在 30 分钟内响应');
+}
+
+function askCancel(id){
+  openSheet('<h4>取消订单</h4>'
+    + '<p style="font-size:11.5px;color:#6E7684;text-align:center;margin-bottom:6px">取消后本次报价将失效，可重新选择服务。</p>'
+    + '<button class="bigbtn" style="background:#fff;border:1px solid #E3E3E3;color:#666" onclick="doCancel(' + id + ')">确认取消订单</button>'
+    + '<button class="bigbtn" onclick="closeSheet()">再想想</button>');
+}
+
+function doCancel(id){
+  var o = findOrder(id); if (!o) return;
+  o.status = 'canceled'; closeSheet(); renderOrders();
+  showToast('订单已取消');
+}
+
+function askReview(id){
+  state.reviewStar = 5;
+  openSheet('<h4>评价本次服务</h4><div class="stars" id="starRow">'
+    + [1,2,3,4,5].map(function(n){ return '<span class="lit" onclick="setStar(' + n + ')">★</span>'; }).join('')
+    + '</div><p style="font-size:11px;color:#8A9199;text-align:center;margin-bottom:10px">您的评价会展示在律师主页，帮助其他用户决策</p>'
+    + '<button class="bigbtn" onclick="doReview(' + id + ')">提交评价</button>');
+}
+
+function setStar(n){
+  state.reviewStar = n;
+  var stars = $('starRow').children;
+  for (var i=0;i<stars.length;i++) stars[i].classList.toggle('lit', i < n);
+}
+
+function doReview(id){
+  var o = findOrder(id); if (!o) return;
+  o.status = 'done'; closeSheet(); renderOrders();
+  showToast('评价已提交，感谢反馈（' + state.reviewStar + ' 星）');
+}
+
+function delOrder(id){
+  ORDERS = ORDERS.filter(function(o){ return o.id !== id; });
+  renderOrders(); showToast('订单已删除');
+}
+
+function findOrder(id){ for (var i=0;i<ORDERS.length;i++){ if (ORDERS[i].id === id) return ORDERS[i]; } return null; }
+
+/* ================= 消息 ================= */
+function renderConvs(){
+  $('convScroll').innerHTML = CONVS.map(function(c){
+    return '<div class="mitem" onclick="openChat(\'' + c.id + '\')">'
+      + '<div class="mava" style="background:linear-gradient(140deg,#6B7F96,#33465C)">' + c.name.charAt(0) + '</div>'
+      + '<div class="mbody"><div class="mname">' + c.name + '<span>' + c.time + '</span></div>'
+      + '<div class="mtext">' + c.last + '</div></div></div>';
+  }).join('') + '<div style="text-align:center;font-size:9.5px;color:#B4B9C0;padding:26px 0">暂无更多消息</div>';
+}
+
+function openChat(id){
+  state.conv = id;
+  var c = findConv(id);
+  $('chatTitle').textContent = c.name;
+  renderChat();
+  go('chat');
+}
+
+function findConv(id){ for (var i=0;i<CONVS.length;i++){ if (CONVS[i].id === id) return CONVS[i]; } return CONVS[0]; }
+
+function renderChat(){
+  var c = findConv(state.conv);
+  $('chatScroll').innerHTML = '<div class="bubwrap">' + c.msgs.map(function(m){
+    return '<div class="bub ' + (m.me ? 'me' : 'them') + '">' + m.t + '</div>';
+  }).join('') + '</div>';
+  var sc = $('chatScroll'); sc.scrollTop = sc.scrollHeight;
+}
+
+var REPLIES = [
+  '收到，我先看一下您描述的情况。',
+  '这个问题通常取决于合同的具体条款，方便发一下关键页面吗？',
+  '如果协商不成，可以向房屋所在地法院起诉，金额较小可走小额诉讼。',
+  '我先帮您梳理三个可执行步骤，您看是否方便明天电话沟通？'
+];
+var replyIdx = 0;
+
+function quick(text){ $('chatInput').value = text; $('chatInput').focus(); }
+
+function sendMsg(){
+  var inp = $('chatInput'), v = inp.value.trim();
+  if (!v) return;
+  var c = findConv(state.conv);
+  c.msgs.push({ me:true, t:v }); c.last = v; c.time = '刚刚';
+  inp.value = ''; renderChat();
+  setTimeout(function(){
+    c.msgs.push({ me:false, t: REPLIES[replyIdx % REPLIES.length] });
+    replyIdx++; c.last = REPLIES[(replyIdx - 1) % REPLIES.length];
+    if (state.view === 'chat') renderChat();
+  }, 900);
+}
+
+/* ================= 弹层 ================= */
+function openSheet(html){
+  $('sheet').innerHTML = html;
+  $('ov').classList.add('show');
+}
+
+function closeSheet(){ $('ov').classList.remove('show'); }
+
+function openPlus(){
+  openSheet('<h4>发起咨询</h4>'
+    + '<div class="opt" onclick="closeSheet(); go(\'list\')">快速咨询 · 按案件匹配律师<span>›</span></div>'
+    + '<div class="opt" onclick="showToast(\'需求已提交，顾问会在 1 小时内联系您\')">发布法律需求<span>›</span></div>'
+    + '<div class="opt" onclick="showToast(\'律师入驻审核约 3 个工作日\')">我是律师，申请入驻<span>›</span></div>');
+}
+
+/* ================= 重置 ================= */
+function resetDemo(){
+  ORDERS = seedOrders();
+  CONVS.forEach(function(c){ c.msgs = c.msgs.slice(0, c.id === 'huangxin' ? 2 : 1); });
+  state = { view:'home', cat:null, sort:'default', priceDir:'none', lawyer:null, tab:'all', conv:'huangxin', reviewStar:5 };
+  setTab('all'); updateBadges(); renderHome(); renderList(); renderConvs();
+  go('home');
+  showToast('演示数据已重置');
+}
+
+/* ================= 原稿灯箱 ================= */
+function openLightbox(src){
+  $('lbImg').src = src; $('lightbox').classList.add('show');
+}
+function closeLightbox(){ $('lightbox').classList.remove('show'); }
+
+document.addEventListener('keydown', function(e){ if (e.key === 'Escape'){ closeLightbox(); closeSheet(); } });
+$('ov').addEventListener('click', function(e){ if (e.target === this) closeSheet(); });
+
+/* ================= 初始化 ================= */
+renderHome(); renderList(); renderOrders(); renderConvs(); updateBadges();
+</script>
+</body>
+</html>
